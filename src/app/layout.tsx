@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import Header from "@/widgets/Header";
+import { ToastContainer } from "react-toastify";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,8 +32,9 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" enableSystem>
           <Header />
-          <main className="flex-1 flex">
-            <div className="main__container flex-1 flex flex-col gap-4 px-4 py-2 max-w-7xl mx-auto">
+          <main className="flex-1 flex flex-col">
+            <ToastContainer />
+            <div className="main__container flex-1 flex flex-col gap-4 px-4 py-2 max-w-7xl mx-auto w-full">
               {children}
             </div>
           </main>

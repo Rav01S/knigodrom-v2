@@ -2,11 +2,11 @@
 
 import ThemeSwitcher from "@/features/theme/ui/ThemeSwitcher";
 import ClientOnly from "@/shared/components/ClientOnly";
-import { clsx } from "clsx";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import BurgerMenu from "./BurgerMenu";
 import useIsMobileScreen from "@/shared/hooks/useIsMobileScreen";
+import ButtonLink from "@/shared/components/ButtonLink";
 
 type THeaderNavProps = {
   isAuthed: boolean;
@@ -41,20 +41,9 @@ export default function HeaderNav({ isAuthed }: THeaderNavProps) {
                     <Link href="/sign-in">Вход</Link>
                   </li>
                   <li>
-                    <Link
-                      className={clsx(
-                        "border-2 inline-block px-4 py-1.5 rounded transition-colors",
-                        {
-                          "border-white text-black bg-white":
-                            resolvedTheme === "dark",
-                          "border-black text-white bg-black":
-                            resolvedTheme === "light",
-                        }
-                      )}
-                      href="/sign-up"
-                    >
+                    <ButtonLink variant="filled" href="/sign-up">
                       Регистрация
-                    </Link>
+                    </ButtonLink>
                   </li>
                 </>
               )}

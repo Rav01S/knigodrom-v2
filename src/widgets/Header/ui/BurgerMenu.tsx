@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import ThemeSwitcher from "@/features/theme/ui/ThemeSwitcher";
 import useOutsideElementClick from "@/shared/hooks/useOutsideElementClick";
+import ButtonLink from "@/shared/components/ButtonLink";
 
 type TBurgerMenu = {
   isAuthed: boolean;
@@ -89,20 +90,9 @@ export default function BurgerMenu({ isAuthed }: TBurgerMenu) {
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    className={clsx(
-                      "border-2 inline-block w-full text-center px-4 py-1.5 rounded transition-colors",
-                      {
-                        "border-white text-black bg-white":
-                          resolvedTheme === "dark",
-                        "border-black text-white bg-black":
-                          resolvedTheme === "light",
-                      }
-                    )}
-                    href="/sign-up"
-                  >
+                  <ButtonLink className="w-full" variant="filled" href="/sign-up">
                     Регистрация
-                  </Link>
+                  </ButtonLink>
                 </li>
               </>
             )}

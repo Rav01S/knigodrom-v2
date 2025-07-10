@@ -36,6 +36,7 @@ export default function ThemeSwitcher({ className }: TThemeSwitcherProps) {
         <motion.span
           layout
           whileHover={{ rotate: "45deg" }}
+          whileTap={{ rotate: "90deg" }}
           transition={{ duration: 0.2 }}
           className="w-full h-full flex items-center justify-center"
         >
