@@ -2,8 +2,6 @@
 
 import { auth } from "@/shared/lib/better-auth/auth";
 import { headers } from "next/headers";
-import HeaderNav from "./ui/HeaderNav";
-import HeaderLogo from "./ui/HeaderLogo";
 import HeaderContainer from "./ui/HeaderContainer";
 
 export default async function Header() {
