@@ -118,7 +118,7 @@ export default function SignUpForm() {
           onClick={() =>
             authClient.signIn.social({
               provider: "google",
-              callbackURL: window.location.origin + "/profile",
+              callbackURL: "/profile"
             })
           }
         >
