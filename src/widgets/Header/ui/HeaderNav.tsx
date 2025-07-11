@@ -6,13 +6,21 @@ import Link from "next/link";
 import BurgerMenu from "./BurgerMenu";
 import useIsMobileScreen from "@/shared/hooks/useIsMobileScreen";
 import ButtonLink from "@/shared/components/ButtonLink";
+import Image from "next/image";
+import { authClient } from "@/shared/lib/better-auth/clientAuth";
+import Dropdown from "@/shared/components/Dropdown";
 
 type THeaderNavProps = {
   isAuthed: boolean;
 };
 
-export default function HeaderNav({ isAuthed }: THeaderNavProps) {
+export default function HeaderNav({
+  isAuthed: initialIsAuthed,
+}: THeaderNavProps) {
   const { isMobileScreen } = useIsMobileScreen();
+  const session = authClient.useSession();
+
+  const isAuthed = !!session.data || initialIsAuthed;
 
   return (
     <ClientOnly>
@@ -23,13 +31,41 @@ export default function HeaderNav({ isAuthed }: THeaderNavProps) {
               {isAuthed && (
                 <>
                   <li>
-                    <Link href="/profile">Профиль</Link>
-                  </li>
-                  <li>
-                    <Link href="/settings">Настройки</Link>
-                  </li>
-                  <li>
-                    <Link href="/sign-out">Выход</Link>
+                    <Dropdown>
+                      <Dropdown.Title className="flex gap-4 items-center">
+                        <Image
+                          src={
+                            session.data?.user.image ||
+                            "/placeholders/image-not-available.jpg"
+                          }
+                          alt="User Avatar"
+                          width={100}
+                          height={100}
+                          className="rounded-full w-12 h-12 ring-2 ring-gray-500"
+                        />
+                        {session.data?.user.name || ""}
+                      </Dropdown.Title>
+                      <Dropdown.Content>
+                        <Link
+                          className="inline-block p-2 w-full text-center"
+                          href="/profile"
+                        >
+                          Профиль
+                        </Link>
+                        <Link
+                          className="inline-block p-2 w-full text-center"
+                          href="/settings"
+                        >
+                          Настройки
+                        </Link>
+                        <Link
+                          className="inline-block p-2 w-full text-center"
+                          href="/sign-out"
+                        >
+                          Выйти
+                        </Link>
+                      </Dropdown.Content>
+                    </Dropdown>
                   </li>
                 </>
               )}

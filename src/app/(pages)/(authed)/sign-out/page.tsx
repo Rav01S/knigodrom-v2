@@ -2,23 +2,21 @@
 
 import Spinner from "@/shared/components/Spinner";
 import { authClient } from "@/shared/lib/better-auth/clientAuth";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function SignOutPage() {
-  const router = useRouter();
   useEffect(() => {
     authClient.signOut({
       fetchOptions: {
         onSuccess: () => {
-          router.push("/sign-in");
+          window.location.reload();
         },
         onError: () => {
-          router.push("/sign-in");
+          window.location.reload();
         },
       },
     });
-  }, [router]);
+  }, []);
 
   return (
     <>
