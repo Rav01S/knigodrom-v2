@@ -1,6 +1,5 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import ClientOnly from "./ClientOnly";
 
 export default function Spinner({
@@ -10,7 +9,6 @@ export default function Spinner({
   primaryColor?: string;
   bgColor?: string;
 }) {
-  const { resolvedTheme } = useTheme();
 
   return (
     <ClientOnly>

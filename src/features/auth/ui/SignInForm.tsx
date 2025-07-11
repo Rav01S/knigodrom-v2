@@ -65,7 +65,7 @@ export default function SignInForm() {
       </div>
       <div className="form-field flex flex-col gap-2">
         <label htmlFor="password">Пароль</label>
-        <PasswordInput {...register("password")} />
+        <PasswordInput className="pe-8" {...register("password")} />
         <FieldErrorText>{errors.password?.message}</FieldErrorText>
       </div>
       <Button

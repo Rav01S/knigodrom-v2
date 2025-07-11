@@ -21,10 +21,11 @@ export const signUpSchema = z.object({
     .refine((val) => /[0-9]/.test(val), {
       message: "Пароль должен содержать хотя бы одну цифру",
     }),
+  password_repeat: z.string(),
   username: z
     .string()
     .min(2, { message: "ФИО должно содержать хотя бы 2 символа" })
     .max(100, { message: "ФИО не должно превышать 100 символов" }),
-});
+}).refine(data => data.password === data.password_repeat, {error: "Пароли должны совпадать", path: ["password_repeat"]});
 
 export type TSignUpSchema = z.infer<typeof signUpSchema>;

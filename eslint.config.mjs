@@ -15,16 +15,7 @@ const eslintConfig = [
     rules: {
       semi: ["error"],
       quotes: ["error", "double"],
-      "no-unused-vars": [
-        "error",
-        {
-          vars: "all",
-          args: "after-used",
-          caughtErrors: "all",
-          ignoreRestSiblings: false,
-          reportUsedIgnorePattern: false,
-        },
-      ],
+      "@typescript-eslint/no-unused-vars": "warn",
     },
   }),
 ];

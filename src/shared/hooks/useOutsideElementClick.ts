@@ -1,9 +1,10 @@
-// useOutsideElementClick.ts
 import { useEffect, RefObject } from "react";
+
+type THandler = (event: MouseEvent) => void;
 
 function useOutsideElementClick<T extends HTMLElement = HTMLElement>(
   ref: RefObject<T | null>,
-  handler: (event: MouseEvent) => void
+  handler: THandler
 ): void {
   useEffect(() => {
     const listener = (event: MouseEvent) => {

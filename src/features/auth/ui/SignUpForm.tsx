@@ -28,9 +28,11 @@ export default function SignUpForm() {
   });
 
   const onSubmit = async (data: TSignUpSchema) => {
+    const { email, password, username } = data;
     const res = await authClient.signUp.email({
-      ...data,
-      name: data.username,
+      email,
+      password,
+      name: username,
     });
 
     if (res.error) {
@@ -78,8 +80,13 @@ export default function SignUpForm() {
       </div>
       <div className="form-field flex flex-col gap-2">
         <label htmlFor="password">Пароль</label>
-        <PasswordInput {...register("password")} />
+        <PasswordInput className="pe-8" {...register("password")} />
         <FieldErrorText>{errors.password?.message}</FieldErrorText>
+      </div>
+      <div className="form-field flex flex-col gap-2">
+        <label htmlFor="password_repeat">Пароль</label>
+        <PasswordInput className="pe-8" {...register("password_repeat")} />
+        <FieldErrorText>{errors.password_repeat?.message}</FieldErrorText>
       </div>
       <Button
         className="flex items-center gap-4 justify-center"

@@ -2,7 +2,6 @@
 
 import clsx from "clsx";
 import { useTheme } from "next-themes";
-import Link from "next/link";
 import ClientOnly from "./ClientOnly";
 
 type TButtonProps = {
