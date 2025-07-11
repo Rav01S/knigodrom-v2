@@ -18,7 +18,7 @@ export default function SignOutPage() {
         },
       },
     });
-  }, []);
+  }, [router]);
 
   return (
     <>

@@ -2,7 +2,6 @@
 
 import ThemeSwitcher from "@/features/theme/ui/ThemeSwitcher";
 import ClientOnly from "@/shared/components/ClientOnly";
-import { useTheme } from "next-themes";
 import Link from "next/link";
 import BurgerMenu from "./BurgerMenu";
 import useIsMobileScreen from "@/shared/hooks/useIsMobileScreen";
@@ -13,7 +12,6 @@ type THeaderNavProps = {
 };
 
 export default function HeaderNav({ isAuthed }: THeaderNavProps) {
-  const { resolvedTheme } = useTheme();
   const { isMobileScreen } = useIsMobileScreen();
 
   return (

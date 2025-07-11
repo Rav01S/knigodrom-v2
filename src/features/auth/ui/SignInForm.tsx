@@ -68,7 +68,12 @@ export default function SignInForm() {
         <PasswordInput {...register("password")} />
         <FieldErrorText>{errors.password?.message}</FieldErrorText>
       </div>
-      <Button className="flex items-center gap-4 justify-center" variant="filled" type="submit" disabled={isSubmitting}>
+      <Button
+        className="flex items-center gap-4 justify-center"
+        variant="filled"
+        type="submit"
+        disabled={isSubmitting}
+      >
         {isSubmitting ? (
           <>
             <Spinner primaryColor="#000" /> Входим...
