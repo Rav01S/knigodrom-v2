@@ -6,17 +6,25 @@ import { IoIosSunny } from "react-icons/io";
 import { clsx } from "clsx";
 import ClientOnly from "@/shared/components/ClientOnly";
 import { motion } from "motion/react";
+import { MouseEvent } from "react";
 
 type TThemeSwitcherProps = {
   className?: string;
-};
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-export default function ThemeSwitcher({ className }: TThemeSwitcherProps) {
+export default function ThemeSwitcher({
+  className,
+  onClick,
+  ...props
+}: TThemeSwitcherProps) {
   const { setTheme, resolvedTheme } = useTheme();
 
-  const toggleTheme = () => {
+  const toggleTheme = (e: MouseEvent<HTMLButtonElement>) => {
     if (resolvedTheme === "dark") setTheme("light");
     else setTheme("dark");
+    if (onClick) {
+      onClick(e);
+    }
   };
 
   return (
@@ -32,6 +40,7 @@ export default function ThemeSwitcher({ className }: TThemeSwitcherProps) {
         )}
         aria-label="Theme Switcher"
         onClick={toggleTheme}
+        {...props}
       >
         <motion.span
           layout

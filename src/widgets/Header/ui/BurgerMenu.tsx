@@ -54,7 +54,7 @@ export default function BurgerMenu({ isAuthed }: TBurgerMenu) {
             {isAuthed && (
               <>
                 <li>
-                  <Link
+                  <Link onClick={() => setIsOpen(false)}
                     className="inline-block w-full text-center px-4 py-2"
                     href="/profile"
                   >
@@ -62,7 +62,7 @@ export default function BurgerMenu({ isAuthed }: TBurgerMenu) {
                   </Link>
                 </li>
                 <li>
-                  <Link
+                  <Link onClick={() => setIsOpen(false)}
                     className="inline-block w-full text-center px-4 py-2"
                     href="/settings"
                   >
@@ -70,7 +70,7 @@ export default function BurgerMenu({ isAuthed }: TBurgerMenu) {
                   </Link>
                 </li>
                 <li>
-                  <Link
+                  <Link onClick={() => setIsOpen(false)}
                     className="inline-block w-full text-center px-4 py-2"
                     href="/sign-out"
                   >
@@ -82,7 +82,7 @@ export default function BurgerMenu({ isAuthed }: TBurgerMenu) {
             {!isAuthed && (
               <>
                 <li>
-                  <Link
+                  <Link onClick={() => setIsOpen(false)}
                     className="inline-block w-full text-center px-4 py-2"
                     href="/sign-in"
                   >
@@ -90,14 +90,14 @@ export default function BurgerMenu({ isAuthed }: TBurgerMenu) {
                   </Link>
                 </li>
                 <li>
-                  <ButtonLink className="w-full" variant="filled" href="/sign-up">
+                  <ButtonLink onClick={() => setIsOpen(false)} className="w-full" variant="filled" href="/sign-up">
                     Регистрация
                   </ButtonLink>
                 </li>
               </>
             )}
           </ul>
-          <ThemeSwitcher className="absolute left-4 bottom-4" />
+          <ThemeSwitcher onClick={() => setIsOpen(false)} className="absolute left-4 bottom-4" />
         </div>
       </div>
     </>
