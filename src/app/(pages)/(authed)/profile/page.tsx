@@ -1,6 +1,7 @@
 "use server";
 
 import { auth } from "@/shared/lib/better-auth/auth";
+import { DEFAULT_AVATAR_IMAGE } from "@/shared/lib/helpers";
 import { headers } from "next/headers";
 import Image from "next/image";
 
@@ -21,11 +22,11 @@ export default async function ProfilePage() {
       >
         <div className="user-image">
           <Image
-            src={session.user.image || "/placeholders/image-not-available.jpg"}
+            src={session.user.image || DEFAULT_AVATAR_IMAGE}
             alt="User Avatar"
             width={100}
             height={100}
-            className="rounded-full w-48 h-48 ring-2 ring-gray-500"
+            className="rounded-xl w-48 h-48 ring-2 ring-gray-500"
           />
         </div>
         <div className="user-info">

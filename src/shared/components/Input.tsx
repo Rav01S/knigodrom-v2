@@ -9,7 +9,7 @@ export default function Input({
   return (
     <>
       <input
-        className={clsx("border-2 px-4 py-2 outline-none rounded", className)}
+        className={clsx("border-2 px-4 py-2 outline-none rounded disabled:border-gray-400 disabled:text-gray-400", className)}
         {...props}
       />
     </>

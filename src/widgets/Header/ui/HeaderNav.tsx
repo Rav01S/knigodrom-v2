@@ -9,18 +9,15 @@ import ButtonLink from "@/shared/components/ButtonLink";
 import Image from "next/image";
 import { authClient } from "@/shared/lib/better-auth/clientAuth";
 import Dropdown from "@/shared/components/Dropdown";
+import { DEFAULT_AVATAR_IMAGE } from "@/shared/lib/helpers";
 
-type THeaderNavProps = {
-  isAuthed: boolean;
-};
-
-export default function HeaderNav({
-  isAuthed: initialIsAuthed,
-}: THeaderNavProps) {
+export default function HeaderNav() {
   const { isMobileScreen } = useIsMobileScreen();
   const session = authClient.useSession();
 
-  const isAuthed = !!session.data || initialIsAuthed;
+  const isAuthed = !!session.data;
+
+  if (!session || session.isPending) return null;
 
   return (
     <ClientOnly>
@@ -36,7 +33,7 @@ export default function HeaderNav({
                         <Image
                           src={
                             session.data?.user.image ||
-                            "/placeholders/image-not-available.jpg"
+                            DEFAULT_AVATAR_IMAGE
                           }
                           alt="User Avatar"
                           width={100}

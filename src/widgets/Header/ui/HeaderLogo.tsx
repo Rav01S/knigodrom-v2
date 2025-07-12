@@ -23,7 +23,7 @@ export default function HeaderLogo() {
         >
           <Image width={128} height={40} alt="Logo" src="/next.svg" />
         </div>
-        <h4>Knigodrom-v2</h4>
+        <h4 className="hidden sm:block">Knigodrom-v2</h4>
       </Link>
     </ClientOnly>
   );

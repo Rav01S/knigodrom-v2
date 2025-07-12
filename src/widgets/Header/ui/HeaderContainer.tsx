@@ -6,7 +6,7 @@ import HeaderNav from "./HeaderNav";
 import ClientOnly from "@/shared/components/ClientOnly";
 import clsx from "clsx";
 
-export default function HeaderContainer({ isAuthed }: { isAuthed: boolean }) {
+export default function HeaderContainer() {
   const { resolvedTheme } = useTheme();
   return (
     <ClientOnly>
@@ -18,7 +18,7 @@ export default function HeaderContainer({ isAuthed }: { isAuthed: boolean }) {
       >
         <div className="header__container flex justify-between items-center gap-4 px-4 py-2 max-w-7xl mx-auto">
           <HeaderLogo />
-          <HeaderNav isAuthed={isAuthed} />
+          <HeaderNav />
         </div>
       </header>
     </ClientOnly>

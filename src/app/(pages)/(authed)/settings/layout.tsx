@@ -4,7 +4,7 @@ import useIsMobileScreen from "@/shared/hooks/useIsMobileScreen";
 import { clsx } from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { PropsWithChildren, useEffect } from "react";
+import { PropsWithChildren } from "react";
 
 export default function Layout(props: PropsWithChildren) {
   const { isMobileScreen } = useIsMobileScreen();
@@ -13,32 +13,31 @@ export default function Layout(props: PropsWithChildren) {
   return (
     <>
       <div
-        className={clsx("settings-page-container flex gap-4", {
+        className={clsx("settings-page-container flex-1 items-stretch flex gap-4", {
           "flex-col": isMobileScreen,
         })}
       >
-        {((isMobileScreen && pathname === "/settings") || (!isMobileScreen)) && (
+        {((isMobileScreen && pathname === "/settings") || !isMobileScreen) && (
           <div
             className={clsx("settings-page-left p-2 flex-1", {
               "border-r-2 border-r-gray-400": !isMobileScreen,
             })}
           >
-            <h2 className="text-center">Настройки</h2>
-            <ul className="settings-page-list flex flex-col">
-              <li>
-                <Link className="inline-block px-4 py-2" href="/settings/main">
-                  Основная информация
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="inline-block px-4 py-2"
-                  href="/settings/security"
-                >
-                  Безопасность
-                </Link>
-              </li>
-            </ul>
+            <div className="settings-left-container sticky top-16">
+              <h2 className="text-center md:text-start">
+                Настройки
+              </h2>
+              <ul className="settings-page-list flex flex-col">
+                <li>
+                  <Link
+                    className="inline-block px-4 py-2"
+                    href="/settings/main"
+                  >
+                    Аккаунт
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
         )}
         {props.children}
