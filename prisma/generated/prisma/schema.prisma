@@ -15,16 +15,17 @@ enum Role {
 }
 
 model User {
-  id            String    @id
-  role          Role      @default(USER)
-  name          String
-  email         String
-  emailVerified Boolean
-  image         String?
-  createdAt     DateTime
-  updatedAt     DateTime
-  sessions      Session[]
-  accounts      Account[]
+  id              String            @id
+  role            Role              @default(USER)
+  name            String
+  email           String
+  emailVerified   Boolean
+  image           String?
+  createdAt       DateTime
+  updatedAt       DateTime
+  sessions        Session[]
+  accounts        Account[]
+  UserBookRaiting UserBookRaiting[]
 
   @@unique([email])
   @@map("user")
@@ -76,15 +77,16 @@ model Verification {
 }
 
 model Book {
-  id          String   @id @default(cuid())
-  title       String
-  author      String
-  downloadUrl String?
-  publishedAt DateTime
-  createdAt   DateTime
-  updatedAt   DateTime
-  Author      Author?  @relation(fields: [authorId], references: [id])
-  authorId    String?
+  id              String            @id @default(cuid())
+  title           String
+  author          String
+  downloadUrl     String?
+  publishedAt     DateTime
+  createdAt       DateTime
+  updatedAt       DateTime
+  Author          Author?           @relation(fields: [authorId], references: [id])
+  authorId        String?
+  UserBookRaiting UserBookRaiting[]
 
   @@map("book")
 }
@@ -97,6 +99,17 @@ model BookImage {
   updatedAt DateTime
 
   @@map("book_image")
+}
+
+model UserBookRaiting {
+  bookId  String
+  book    Book    @relation(references: [id], fields: [bookId])
+  userId  String
+  user    User    @relation(references: [id], fields: [userId])
+  raiting Int
+  comment String?
+
+  @@id([bookId, userId])
 }
 
 model Author {
@@ -120,6 +133,13 @@ model AuthorImage {
   updatedAt DateTime
 
   @@map("author_image")
+}
+
+enum UsersBookStatus {
+  READING
+  READED
+  IN_QUEUE
+  NOT_LIKED
 }
 
 model UserBookStatus {

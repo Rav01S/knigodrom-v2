@@ -186,6 +186,13 @@ exports.Prisma.BookImageScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.UserBookRaitingScalarFieldEnum = {
+  bookId: 'bookId',
+  userId: 'userId',
+  raiting: 'raiting',
+  comment: 'comment'
+};
+
 exports.Prisma.AuthorScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -238,6 +245,7 @@ exports.Prisma.ModelName = {
   Verification: 'Verification',
   Book: 'Book',
   BookImage: 'BookImage',
+  UserBookRaiting: 'UserBookRaiting',
   Author: 'Author',
   AuthorImage: 'AuthorImage',
   UserBookStatus: 'UserBookStatus'

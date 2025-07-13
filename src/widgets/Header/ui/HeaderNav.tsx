@@ -9,7 +9,7 @@ import ButtonLink from "@/shared/components/ButtonLink";
 import Image from "next/image";
 import { authClient } from "@/shared/lib/better-auth/clientAuth";
 import Dropdown from "@/shared/components/Dropdown";
-import { DEFAULT_AVATAR_IMAGE } from "@/shared/lib/helpers";
+import { DEFAULT_AVATAR_IMAGE } from "@/shared/lib/clientConstants";
 
 export default function HeaderNav() {
   const { isMobileScreen } = useIsMobileScreen();
@@ -17,7 +17,7 @@ export default function HeaderNav() {
 
   const isAuthed = !!session.data;
 
-  if (!session || session.isPending) return null;
+  if (!session.data || session.isPending) return null;
 
   return (
     <ClientOnly>
@@ -82,7 +82,6 @@ export default function HeaderNav() {
             <ThemeSwitcher />
           </>
         )}
-
         {isMobileScreen && <BurgerMenu isAuthed={isAuthed} />}
       </nav>
     </ClientOnly>

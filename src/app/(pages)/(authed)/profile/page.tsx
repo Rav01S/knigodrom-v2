@@ -1,7 +1,7 @@
 "use server";
 
 import { auth } from "@/shared/lib/better-auth/auth";
-import { DEFAULT_AVATAR_IMAGE } from "@/shared/lib/helpers";
+import { DEFAULT_AVATAR_IMAGE } from "@/shared/lib/clientConstants";
 import { headers } from "next/headers";
 import Image from "next/image";
 

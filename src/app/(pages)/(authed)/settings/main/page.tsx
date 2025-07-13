@@ -2,7 +2,8 @@
 
 import ChangeUserAvatar from "@/features/profile/ui/ChangeUserAvatar";
 import ChangeUserInfoForm from "@/features/profile/ui/ChangeUserInfoForm";
-import ButtonLink from "@/shared/components/ButtonLink";
+import ChangeUserPasswordForm from "@/features/profile/ui/ChangeUserPassword";
+import DeleteAccount from "@/features/profile/ui/DeleteAccount";
 import { authClient } from "@/shared/lib/better-auth/clientAuth";
 
 export default function Page() {
@@ -22,12 +23,10 @@ export default function Page() {
         <section className="flex flex-col gap-2" id="change-password">
           <h3>Пароль</h3>
           <p className="text-gray-400">
-            Сбросив пароль, вы сбросите все сессии на других устройствах, кроме
+            Изменив пароль, вы сбросите все сессии на других устройствах, кроме
             данной сессии
           </p>
-          <ButtonLink className="w-full md:max-w-fit" href="/change-password">
-            Сбросить пароль
-          </ButtonLink>
+          <ChangeUserPasswordForm />
         </section>
         <section className="flex flex-col gap-2" id="delete-account">
           <h3>Удаление аккаунта</h3>
@@ -35,12 +34,7 @@ export default function Page() {
             Удаление аккаунта приведет к удалению всех данных о вас на данном
             сайте
           </p>
-          <ButtonLink
-            className="w-full md:max-w-fit !text-red-500 !border-red-500 hover:!bg-red-500 hover:!text-white"
-            href="/delete-my-account"
-          >
-            Удалить аккаунт
-          </ButtonLink>
+          <DeleteAccount />
         </section>
       </div>
     </div>
