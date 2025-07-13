@@ -17,7 +17,7 @@ export default function HeaderNav() {
 
   const isAuthed = !!session.data;
 
-  if (!session.data || session.isPending) return null;
+  if (!session || session.isPending) return null;
 
   return (
     <ClientOnly>
