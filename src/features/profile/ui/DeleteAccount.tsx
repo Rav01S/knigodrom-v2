@@ -50,8 +50,6 @@ export default function DeleteAccount() {
     }
   };
 
-  
-
   return (
     <>
       <Button
