@@ -37,6 +37,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 # Надо сделать
 
+- Отправить код не влезает в мобильной версии при удалении аккаунта
 - Профиль и HeaderNav изображение cover
 - Email код при "Забыли пароль?"
 - Email код при Удалении аккаунта

@@ -70,7 +70,7 @@ export default function Modal({
             {
               "bg-black": resolvedTheme === "dark",
               "bg-white": resolvedTheme === "light",
-              "top-18 left-0 h-[_calc(100vh-72px)]": isMobileScreen,
+              "top-0 left-0 h-screen z-50": isMobileScreen,
               "max-w-[_min(100vw,500px)] left-1/2 bottom-1/2 -translate-x-1/2 translate-y-1/2 border-2 border-gray-400 rounded-xl":
                 !isMobileScreen,
             },

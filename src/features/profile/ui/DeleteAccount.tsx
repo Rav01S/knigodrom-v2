@@ -76,11 +76,11 @@ export default function DeleteAccount() {
                 Сбросить
               </Link>
             </p>
-            <div className="form__field">
+            <div className="form__field flex flex-col">
               <label htmlFor="new_password">Код</label>
-              <div className="container flex items-center justify-between gap-4">
-                <Input className="flex-1" {...register("code")} />
-                <Button type="button">Отправить код</Button>
+              <div className="flex flex-col items-end xs:flex-row xs:items-center justify-between gap-4">
+                <Input className="flex-1 w-full text-sm sm:text-base" {...register("code")} />
+                <Button className="text-sm sm:text-base" type="button">Отправить</Button>
               </div>
               <FieldErrorText>{errors.code?.message}</FieldErrorText>
             </div>
