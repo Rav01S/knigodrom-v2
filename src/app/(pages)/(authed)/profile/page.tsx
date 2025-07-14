@@ -26,7 +26,7 @@ export default async function ProfilePage() {
             alt="User Avatar"
             width={100}
             height={100}
-            className="rounded-xl w-48 h-48 ring-2 ring-gray-500"
+            className="object-cover rounded-xl w-48 h-48 ring-2 ring-gray-500"
           />
         </div>
         <div className="user-info">

@@ -38,7 +38,7 @@ export default function HeaderNav() {
                           alt="User Avatar"
                           width={100}
                           height={100}
-                          className="rounded-full w-12 h-12 ring-2 ring-gray-500"
+                          className="object-cover rounded-full w-12 h-12 ring-2 ring-gray-500"
                         />
                         {session.data?.user.name || ""}
                       </Dropdown.Title>
