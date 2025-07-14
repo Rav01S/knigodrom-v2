@@ -15,18 +15,17 @@ enum Role {
 }
 
 model User {
-  id                     String                   @id
-  role                   Role                     @default(USER)
-  name                   String
-  email                  String
-  emailVerified          Boolean
-  image                  String?
-  createdAt              DateTime
-  updatedAt              DateTime
-  sessions               Session[]
-  accounts               Account[]
-  UserBookRaiting        UserBookRaiting[]
-  UserAccountDeleteCodes UserAccountDeleteCodes[]
+  id              String            @id
+  role            Role              @default(USER)
+  name            String
+  email           String
+  emailVerified   Boolean
+  image           String?
+  createdAt       DateTime
+  updatedAt       DateTime
+  sessions        Session[]
+  accounts        Account[]
+  UserBookRaiting UserBookRaiting[]
 
   @@unique([email])
   @@map("user")
@@ -75,17 +74,6 @@ model Verification {
   updatedAt  DateTime?
 
   @@map("verification")
-}
-
-model UserAccountDeleteCodes {
-  userId    String   @id
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  code      String
-  expiresAt DateTime
-  attempts  Int      @default(0)
-  updatedAt DateTime @updatedAt
-
-  @@map("user_account_delete_codes")
 }
 
 model Book {

@@ -34,11 +34,6 @@ export type Account = $Result.DefaultSelection<Prisma.$AccountPayload>
  */
 export type Verification = $Result.DefaultSelection<Prisma.$VerificationPayload>
 /**
- * Model UserAccountDeleteCodes
- * 
- */
-export type UserAccountDeleteCodes = $Result.DefaultSelection<Prisma.$UserAccountDeleteCodesPayload>
-/**
  * Model Book
  * 
  */
@@ -264,16 +259,6 @@ export class PrismaClient<
     * ```
     */
   get verification(): Prisma.VerificationDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.userAccountDeleteCodes`: Exposes CRUD operations for the **UserAccountDeleteCodes** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more UserAccountDeleteCodes
-    * const userAccountDeleteCodes = await prisma.userAccountDeleteCodes.findMany()
-    * ```
-    */
-  get userAccountDeleteCodes(): Prisma.UserAccountDeleteCodesDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.book`: Exposes CRUD operations for the **Book** model.
@@ -778,7 +763,6 @@ export namespace Prisma {
     Session: 'Session',
     Account: 'Account',
     Verification: 'Verification',
-    UserAccountDeleteCodes: 'UserAccountDeleteCodes',
     Book: 'Book',
     BookImage: 'BookImage',
     UserBookRaiting: 'UserBookRaiting',
@@ -803,7 +787,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "account" | "verification" | "userAccountDeleteCodes" | "book" | "bookImage" | "userBookRaiting" | "author" | "authorImage" | "userBookStatus"
+      modelProps: "user" | "session" | "account" | "verification" | "book" | "bookImage" | "userBookRaiting" | "author" | "authorImage" | "userBookStatus"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1100,80 +1084,6 @@ export namespace Prisma {
           count: {
             args: Prisma.VerificationCountArgs<ExtArgs>
             result: $Utils.Optional<VerificationCountAggregateOutputType> | number
-          }
-        }
-      }
-      UserAccountDeleteCodes: {
-        payload: Prisma.$UserAccountDeleteCodesPayload<ExtArgs>
-        fields: Prisma.UserAccountDeleteCodesFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.UserAccountDeleteCodesFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserAccountDeleteCodesPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.UserAccountDeleteCodesFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserAccountDeleteCodesPayload>
-          }
-          findFirst: {
-            args: Prisma.UserAccountDeleteCodesFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserAccountDeleteCodesPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.UserAccountDeleteCodesFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserAccountDeleteCodesPayload>
-          }
-          findMany: {
-            args: Prisma.UserAccountDeleteCodesFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserAccountDeleteCodesPayload>[]
-          }
-          create: {
-            args: Prisma.UserAccountDeleteCodesCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserAccountDeleteCodesPayload>
-          }
-          createMany: {
-            args: Prisma.UserAccountDeleteCodesCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.UserAccountDeleteCodesCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserAccountDeleteCodesPayload>[]
-          }
-          delete: {
-            args: Prisma.UserAccountDeleteCodesDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserAccountDeleteCodesPayload>
-          }
-          update: {
-            args: Prisma.UserAccountDeleteCodesUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserAccountDeleteCodesPayload>
-          }
-          deleteMany: {
-            args: Prisma.UserAccountDeleteCodesDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.UserAccountDeleteCodesUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.UserAccountDeleteCodesUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserAccountDeleteCodesPayload>[]
-          }
-          upsert: {
-            args: Prisma.UserAccountDeleteCodesUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserAccountDeleteCodesPayload>
-          }
-          aggregate: {
-            args: Prisma.UserAccountDeleteCodesAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateUserAccountDeleteCodes>
-          }
-          groupBy: {
-            args: Prisma.UserAccountDeleteCodesGroupByArgs<ExtArgs>
-            result: $Utils.Optional<UserAccountDeleteCodesGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.UserAccountDeleteCodesCountArgs<ExtArgs>
-            result: $Utils.Optional<UserAccountDeleteCodesCountAggregateOutputType> | number
           }
         }
       }
@@ -1709,7 +1619,6 @@ export namespace Prisma {
     session?: SessionOmit
     account?: AccountOmit
     verification?: VerificationOmit
-    userAccountDeleteCodes?: UserAccountDeleteCodesOmit
     book?: BookOmit
     bookImage?: BookImageOmit
     userBookRaiting?: UserBookRaitingOmit
@@ -1813,14 +1722,12 @@ export namespace Prisma {
     sessions: number
     accounts: number
     UserBookRaiting: number
-    UserAccountDeleteCodes: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sessions?: boolean | UserCountOutputTypeCountSessionsArgs
     accounts?: boolean | UserCountOutputTypeCountAccountsArgs
     UserBookRaiting?: boolean | UserCountOutputTypeCountUserBookRaitingArgs
-    UserAccountDeleteCodes?: boolean | UserCountOutputTypeCountUserAccountDeleteCodesArgs
   }
 
   // Custom InputTypes
@@ -1853,13 +1760,6 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountUserBookRaitingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: UserBookRaitingWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountUserAccountDeleteCodesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserAccountDeleteCodesWhereInput
   }
 
 
@@ -2120,7 +2020,6 @@ export namespace Prisma {
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     accounts?: boolean | User$accountsArgs<ExtArgs>
     UserBookRaiting?: boolean | User$UserBookRaitingArgs<ExtArgs>
-    UserAccountDeleteCodes?: boolean | User$UserAccountDeleteCodesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2162,7 +2061,6 @@ export namespace Prisma {
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     accounts?: boolean | User$accountsArgs<ExtArgs>
     UserBookRaiting?: boolean | User$UserBookRaitingArgs<ExtArgs>
-    UserAccountDeleteCodes?: boolean | User$UserAccountDeleteCodesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2174,7 +2072,6 @@ export namespace Prisma {
       sessions: Prisma.$SessionPayload<ExtArgs>[]
       accounts: Prisma.$AccountPayload<ExtArgs>[]
       UserBookRaiting: Prisma.$UserBookRaitingPayload<ExtArgs>[]
-      UserAccountDeleteCodes: Prisma.$UserAccountDeleteCodesPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2582,7 +2479,6 @@ export namespace Prisma {
     sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     accounts<T extends User$accountsArgs<ExtArgs> = {}>(args?: Subset<T, User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     UserBookRaiting<T extends User$UserBookRaitingArgs<ExtArgs> = {}>(args?: Subset<T, User$UserBookRaitingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserBookRaitingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    UserAccountDeleteCodes<T extends User$UserAccountDeleteCodesArgs<ExtArgs> = {}>(args?: Subset<T, User$UserAccountDeleteCodesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserAccountDeleteCodesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3077,30 +2973,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: UserBookRaitingScalarFieldEnum | UserBookRaitingScalarFieldEnum[]
-  }
-
-  /**
-   * User.UserAccountDeleteCodes
-   */
-  export type User$UserAccountDeleteCodesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAccountDeleteCodes
-     */
-    select?: UserAccountDeleteCodesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserAccountDeleteCodes
-     */
-    omit?: UserAccountDeleteCodesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserAccountDeleteCodesInclude<ExtArgs> | null
-    where?: UserAccountDeleteCodesWhereInput
-    orderBy?: UserAccountDeleteCodesOrderByWithRelationInput | UserAccountDeleteCodesOrderByWithRelationInput[]
-    cursor?: UserAccountDeleteCodesWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: UserAccountDeleteCodesScalarFieldEnum | UserAccountDeleteCodesScalarFieldEnum[]
   }
 
   /**
@@ -6386,1098 +6258,6 @@ export namespace Prisma {
      * Omit specific fields from the Verification
      */
     omit?: VerificationOmit<ExtArgs> | null
-  }
-
-
-  /**
-   * Model UserAccountDeleteCodes
-   */
-
-  export type AggregateUserAccountDeleteCodes = {
-    _count: UserAccountDeleteCodesCountAggregateOutputType | null
-    _avg: UserAccountDeleteCodesAvgAggregateOutputType | null
-    _sum: UserAccountDeleteCodesSumAggregateOutputType | null
-    _min: UserAccountDeleteCodesMinAggregateOutputType | null
-    _max: UserAccountDeleteCodesMaxAggregateOutputType | null
-  }
-
-  export type UserAccountDeleteCodesAvgAggregateOutputType = {
-    attempts: number | null
-  }
-
-  export type UserAccountDeleteCodesSumAggregateOutputType = {
-    attempts: number | null
-  }
-
-  export type UserAccountDeleteCodesMinAggregateOutputType = {
-    userId: string | null
-    code: string | null
-    expiresAt: Date | null
-    attempts: number | null
-    updatedAt: Date | null
-  }
-
-  export type UserAccountDeleteCodesMaxAggregateOutputType = {
-    userId: string | null
-    code: string | null
-    expiresAt: Date | null
-    attempts: number | null
-    updatedAt: Date | null
-  }
-
-  export type UserAccountDeleteCodesCountAggregateOutputType = {
-    userId: number
-    code: number
-    expiresAt: number
-    attempts: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type UserAccountDeleteCodesAvgAggregateInputType = {
-    attempts?: true
-  }
-
-  export type UserAccountDeleteCodesSumAggregateInputType = {
-    attempts?: true
-  }
-
-  export type UserAccountDeleteCodesMinAggregateInputType = {
-    userId?: true
-    code?: true
-    expiresAt?: true
-    attempts?: true
-    updatedAt?: true
-  }
-
-  export type UserAccountDeleteCodesMaxAggregateInputType = {
-    userId?: true
-    code?: true
-    expiresAt?: true
-    attempts?: true
-    updatedAt?: true
-  }
-
-  export type UserAccountDeleteCodesCountAggregateInputType = {
-    userId?: true
-    code?: true
-    expiresAt?: true
-    attempts?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type UserAccountDeleteCodesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which UserAccountDeleteCodes to aggregate.
-     */
-    where?: UserAccountDeleteCodesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of UserAccountDeleteCodes to fetch.
-     */
-    orderBy?: UserAccountDeleteCodesOrderByWithRelationInput | UserAccountDeleteCodesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: UserAccountDeleteCodesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` UserAccountDeleteCodes from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` UserAccountDeleteCodes.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned UserAccountDeleteCodes
-    **/
-    _count?: true | UserAccountDeleteCodesCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: UserAccountDeleteCodesAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: UserAccountDeleteCodesSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: UserAccountDeleteCodesMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: UserAccountDeleteCodesMaxAggregateInputType
-  }
-
-  export type GetUserAccountDeleteCodesAggregateType<T extends UserAccountDeleteCodesAggregateArgs> = {
-        [P in keyof T & keyof AggregateUserAccountDeleteCodes]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateUserAccountDeleteCodes[P]>
-      : GetScalarType<T[P], AggregateUserAccountDeleteCodes[P]>
-  }
-
-
-
-
-  export type UserAccountDeleteCodesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserAccountDeleteCodesWhereInput
-    orderBy?: UserAccountDeleteCodesOrderByWithAggregationInput | UserAccountDeleteCodesOrderByWithAggregationInput[]
-    by: UserAccountDeleteCodesScalarFieldEnum[] | UserAccountDeleteCodesScalarFieldEnum
-    having?: UserAccountDeleteCodesScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: UserAccountDeleteCodesCountAggregateInputType | true
-    _avg?: UserAccountDeleteCodesAvgAggregateInputType
-    _sum?: UserAccountDeleteCodesSumAggregateInputType
-    _min?: UserAccountDeleteCodesMinAggregateInputType
-    _max?: UserAccountDeleteCodesMaxAggregateInputType
-  }
-
-  export type UserAccountDeleteCodesGroupByOutputType = {
-    userId: string
-    code: string
-    expiresAt: Date
-    attempts: number
-    updatedAt: Date
-    _count: UserAccountDeleteCodesCountAggregateOutputType | null
-    _avg: UserAccountDeleteCodesAvgAggregateOutputType | null
-    _sum: UserAccountDeleteCodesSumAggregateOutputType | null
-    _min: UserAccountDeleteCodesMinAggregateOutputType | null
-    _max: UserAccountDeleteCodesMaxAggregateOutputType | null
-  }
-
-  type GetUserAccountDeleteCodesGroupByPayload<T extends UserAccountDeleteCodesGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<UserAccountDeleteCodesGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof UserAccountDeleteCodesGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], UserAccountDeleteCodesGroupByOutputType[P]>
-            : GetScalarType<T[P], UserAccountDeleteCodesGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type UserAccountDeleteCodesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    userId?: boolean
-    code?: boolean
-    expiresAt?: boolean
-    attempts?: boolean
-    updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["userAccountDeleteCodes"]>
-
-  export type UserAccountDeleteCodesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    userId?: boolean
-    code?: boolean
-    expiresAt?: boolean
-    attempts?: boolean
-    updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["userAccountDeleteCodes"]>
-
-  export type UserAccountDeleteCodesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    userId?: boolean
-    code?: boolean
-    expiresAt?: boolean
-    attempts?: boolean
-    updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["userAccountDeleteCodes"]>
-
-  export type UserAccountDeleteCodesSelectScalar = {
-    userId?: boolean
-    code?: boolean
-    expiresAt?: boolean
-    attempts?: boolean
-    updatedAt?: boolean
-  }
-
-  export type UserAccountDeleteCodesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"userId" | "code" | "expiresAt" | "attempts" | "updatedAt", ExtArgs["result"]["userAccountDeleteCodes"]>
-  export type UserAccountDeleteCodesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type UserAccountDeleteCodesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type UserAccountDeleteCodesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-
-  export type $UserAccountDeleteCodesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "UserAccountDeleteCodes"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      userId: string
-      code: string
-      expiresAt: Date
-      attempts: number
-      updatedAt: Date
-    }, ExtArgs["result"]["userAccountDeleteCodes"]>
-    composites: {}
-  }
-
-  type UserAccountDeleteCodesGetPayload<S extends boolean | null | undefined | UserAccountDeleteCodesDefaultArgs> = $Result.GetResult<Prisma.$UserAccountDeleteCodesPayload, S>
-
-  type UserAccountDeleteCodesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<UserAccountDeleteCodesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: UserAccountDeleteCodesCountAggregateInputType | true
-    }
-
-  export interface UserAccountDeleteCodesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserAccountDeleteCodes'], meta: { name: 'UserAccountDeleteCodes' } }
-    /**
-     * Find zero or one UserAccountDeleteCodes that matches the filter.
-     * @param {UserAccountDeleteCodesFindUniqueArgs} args - Arguments to find a UserAccountDeleteCodes
-     * @example
-     * // Get one UserAccountDeleteCodes
-     * const userAccountDeleteCodes = await prisma.userAccountDeleteCodes.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends UserAccountDeleteCodesFindUniqueArgs>(args: SelectSubset<T, UserAccountDeleteCodesFindUniqueArgs<ExtArgs>>): Prisma__UserAccountDeleteCodesClient<$Result.GetResult<Prisma.$UserAccountDeleteCodesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one UserAccountDeleteCodes that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {UserAccountDeleteCodesFindUniqueOrThrowArgs} args - Arguments to find a UserAccountDeleteCodes
-     * @example
-     * // Get one UserAccountDeleteCodes
-     * const userAccountDeleteCodes = await prisma.userAccountDeleteCodes.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends UserAccountDeleteCodesFindUniqueOrThrowArgs>(args: SelectSubset<T, UserAccountDeleteCodesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserAccountDeleteCodesClient<$Result.GetResult<Prisma.$UserAccountDeleteCodesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first UserAccountDeleteCodes that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserAccountDeleteCodesFindFirstArgs} args - Arguments to find a UserAccountDeleteCodes
-     * @example
-     * // Get one UserAccountDeleteCodes
-     * const userAccountDeleteCodes = await prisma.userAccountDeleteCodes.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends UserAccountDeleteCodesFindFirstArgs>(args?: SelectSubset<T, UserAccountDeleteCodesFindFirstArgs<ExtArgs>>): Prisma__UserAccountDeleteCodesClient<$Result.GetResult<Prisma.$UserAccountDeleteCodesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first UserAccountDeleteCodes that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserAccountDeleteCodesFindFirstOrThrowArgs} args - Arguments to find a UserAccountDeleteCodes
-     * @example
-     * // Get one UserAccountDeleteCodes
-     * const userAccountDeleteCodes = await prisma.userAccountDeleteCodes.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends UserAccountDeleteCodesFindFirstOrThrowArgs>(args?: SelectSubset<T, UserAccountDeleteCodesFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserAccountDeleteCodesClient<$Result.GetResult<Prisma.$UserAccountDeleteCodesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more UserAccountDeleteCodes that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserAccountDeleteCodesFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all UserAccountDeleteCodes
-     * const userAccountDeleteCodes = await prisma.userAccountDeleteCodes.findMany()
-     * 
-     * // Get first 10 UserAccountDeleteCodes
-     * const userAccountDeleteCodes = await prisma.userAccountDeleteCodes.findMany({ take: 10 })
-     * 
-     * // Only select the `userId`
-     * const userAccountDeleteCodesWithUserIdOnly = await prisma.userAccountDeleteCodes.findMany({ select: { userId: true } })
-     * 
-     */
-    findMany<T extends UserAccountDeleteCodesFindManyArgs>(args?: SelectSubset<T, UserAccountDeleteCodesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserAccountDeleteCodesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a UserAccountDeleteCodes.
-     * @param {UserAccountDeleteCodesCreateArgs} args - Arguments to create a UserAccountDeleteCodes.
-     * @example
-     * // Create one UserAccountDeleteCodes
-     * const UserAccountDeleteCodes = await prisma.userAccountDeleteCodes.create({
-     *   data: {
-     *     // ... data to create a UserAccountDeleteCodes
-     *   }
-     * })
-     * 
-     */
-    create<T extends UserAccountDeleteCodesCreateArgs>(args: SelectSubset<T, UserAccountDeleteCodesCreateArgs<ExtArgs>>): Prisma__UserAccountDeleteCodesClient<$Result.GetResult<Prisma.$UserAccountDeleteCodesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many UserAccountDeleteCodes.
-     * @param {UserAccountDeleteCodesCreateManyArgs} args - Arguments to create many UserAccountDeleteCodes.
-     * @example
-     * // Create many UserAccountDeleteCodes
-     * const userAccountDeleteCodes = await prisma.userAccountDeleteCodes.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends UserAccountDeleteCodesCreateManyArgs>(args?: SelectSubset<T, UserAccountDeleteCodesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many UserAccountDeleteCodes and returns the data saved in the database.
-     * @param {UserAccountDeleteCodesCreateManyAndReturnArgs} args - Arguments to create many UserAccountDeleteCodes.
-     * @example
-     * // Create many UserAccountDeleteCodes
-     * const userAccountDeleteCodes = await prisma.userAccountDeleteCodes.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many UserAccountDeleteCodes and only return the `userId`
-     * const userAccountDeleteCodesWithUserIdOnly = await prisma.userAccountDeleteCodes.createManyAndReturn({
-     *   select: { userId: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends UserAccountDeleteCodesCreateManyAndReturnArgs>(args?: SelectSubset<T, UserAccountDeleteCodesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserAccountDeleteCodesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a UserAccountDeleteCodes.
-     * @param {UserAccountDeleteCodesDeleteArgs} args - Arguments to delete one UserAccountDeleteCodes.
-     * @example
-     * // Delete one UserAccountDeleteCodes
-     * const UserAccountDeleteCodes = await prisma.userAccountDeleteCodes.delete({
-     *   where: {
-     *     // ... filter to delete one UserAccountDeleteCodes
-     *   }
-     * })
-     * 
-     */
-    delete<T extends UserAccountDeleteCodesDeleteArgs>(args: SelectSubset<T, UserAccountDeleteCodesDeleteArgs<ExtArgs>>): Prisma__UserAccountDeleteCodesClient<$Result.GetResult<Prisma.$UserAccountDeleteCodesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one UserAccountDeleteCodes.
-     * @param {UserAccountDeleteCodesUpdateArgs} args - Arguments to update one UserAccountDeleteCodes.
-     * @example
-     * // Update one UserAccountDeleteCodes
-     * const userAccountDeleteCodes = await prisma.userAccountDeleteCodes.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends UserAccountDeleteCodesUpdateArgs>(args: SelectSubset<T, UserAccountDeleteCodesUpdateArgs<ExtArgs>>): Prisma__UserAccountDeleteCodesClient<$Result.GetResult<Prisma.$UserAccountDeleteCodesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more UserAccountDeleteCodes.
-     * @param {UserAccountDeleteCodesDeleteManyArgs} args - Arguments to filter UserAccountDeleteCodes to delete.
-     * @example
-     * // Delete a few UserAccountDeleteCodes
-     * const { count } = await prisma.userAccountDeleteCodes.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends UserAccountDeleteCodesDeleteManyArgs>(args?: SelectSubset<T, UserAccountDeleteCodesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more UserAccountDeleteCodes.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserAccountDeleteCodesUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many UserAccountDeleteCodes
-     * const userAccountDeleteCodes = await prisma.userAccountDeleteCodes.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends UserAccountDeleteCodesUpdateManyArgs>(args: SelectSubset<T, UserAccountDeleteCodesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more UserAccountDeleteCodes and returns the data updated in the database.
-     * @param {UserAccountDeleteCodesUpdateManyAndReturnArgs} args - Arguments to update many UserAccountDeleteCodes.
-     * @example
-     * // Update many UserAccountDeleteCodes
-     * const userAccountDeleteCodes = await prisma.userAccountDeleteCodes.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more UserAccountDeleteCodes and only return the `userId`
-     * const userAccountDeleteCodesWithUserIdOnly = await prisma.userAccountDeleteCodes.updateManyAndReturn({
-     *   select: { userId: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends UserAccountDeleteCodesUpdateManyAndReturnArgs>(args: SelectSubset<T, UserAccountDeleteCodesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserAccountDeleteCodesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one UserAccountDeleteCodes.
-     * @param {UserAccountDeleteCodesUpsertArgs} args - Arguments to update or create a UserAccountDeleteCodes.
-     * @example
-     * // Update or create a UserAccountDeleteCodes
-     * const userAccountDeleteCodes = await prisma.userAccountDeleteCodes.upsert({
-     *   create: {
-     *     // ... data to create a UserAccountDeleteCodes
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the UserAccountDeleteCodes we want to update
-     *   }
-     * })
-     */
-    upsert<T extends UserAccountDeleteCodesUpsertArgs>(args: SelectSubset<T, UserAccountDeleteCodesUpsertArgs<ExtArgs>>): Prisma__UserAccountDeleteCodesClient<$Result.GetResult<Prisma.$UserAccountDeleteCodesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of UserAccountDeleteCodes.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserAccountDeleteCodesCountArgs} args - Arguments to filter UserAccountDeleteCodes to count.
-     * @example
-     * // Count the number of UserAccountDeleteCodes
-     * const count = await prisma.userAccountDeleteCodes.count({
-     *   where: {
-     *     // ... the filter for the UserAccountDeleteCodes we want to count
-     *   }
-     * })
-    **/
-    count<T extends UserAccountDeleteCodesCountArgs>(
-      args?: Subset<T, UserAccountDeleteCodesCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], UserAccountDeleteCodesCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a UserAccountDeleteCodes.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserAccountDeleteCodesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends UserAccountDeleteCodesAggregateArgs>(args: Subset<T, UserAccountDeleteCodesAggregateArgs>): Prisma.PrismaPromise<GetUserAccountDeleteCodesAggregateType<T>>
-
-    /**
-     * Group by UserAccountDeleteCodes.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserAccountDeleteCodesGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends UserAccountDeleteCodesGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: UserAccountDeleteCodesGroupByArgs['orderBy'] }
-        : { orderBy?: UserAccountDeleteCodesGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, UserAccountDeleteCodesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserAccountDeleteCodesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the UserAccountDeleteCodes model
-   */
-  readonly fields: UserAccountDeleteCodesFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for UserAccountDeleteCodes.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__UserAccountDeleteCodesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the UserAccountDeleteCodes model
-   */
-  interface UserAccountDeleteCodesFieldRefs {
-    readonly userId: FieldRef<"UserAccountDeleteCodes", 'String'>
-    readonly code: FieldRef<"UserAccountDeleteCodes", 'String'>
-    readonly expiresAt: FieldRef<"UserAccountDeleteCodes", 'DateTime'>
-    readonly attempts: FieldRef<"UserAccountDeleteCodes", 'Int'>
-    readonly updatedAt: FieldRef<"UserAccountDeleteCodes", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * UserAccountDeleteCodes findUnique
-   */
-  export type UserAccountDeleteCodesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAccountDeleteCodes
-     */
-    select?: UserAccountDeleteCodesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserAccountDeleteCodes
-     */
-    omit?: UserAccountDeleteCodesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserAccountDeleteCodesInclude<ExtArgs> | null
-    /**
-     * Filter, which UserAccountDeleteCodes to fetch.
-     */
-    where: UserAccountDeleteCodesWhereUniqueInput
-  }
-
-  /**
-   * UserAccountDeleteCodes findUniqueOrThrow
-   */
-  export type UserAccountDeleteCodesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAccountDeleteCodes
-     */
-    select?: UserAccountDeleteCodesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserAccountDeleteCodes
-     */
-    omit?: UserAccountDeleteCodesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserAccountDeleteCodesInclude<ExtArgs> | null
-    /**
-     * Filter, which UserAccountDeleteCodes to fetch.
-     */
-    where: UserAccountDeleteCodesWhereUniqueInput
-  }
-
-  /**
-   * UserAccountDeleteCodes findFirst
-   */
-  export type UserAccountDeleteCodesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAccountDeleteCodes
-     */
-    select?: UserAccountDeleteCodesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserAccountDeleteCodes
-     */
-    omit?: UserAccountDeleteCodesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserAccountDeleteCodesInclude<ExtArgs> | null
-    /**
-     * Filter, which UserAccountDeleteCodes to fetch.
-     */
-    where?: UserAccountDeleteCodesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of UserAccountDeleteCodes to fetch.
-     */
-    orderBy?: UserAccountDeleteCodesOrderByWithRelationInput | UserAccountDeleteCodesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for UserAccountDeleteCodes.
-     */
-    cursor?: UserAccountDeleteCodesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` UserAccountDeleteCodes from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` UserAccountDeleteCodes.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of UserAccountDeleteCodes.
-     */
-    distinct?: UserAccountDeleteCodesScalarFieldEnum | UserAccountDeleteCodesScalarFieldEnum[]
-  }
-
-  /**
-   * UserAccountDeleteCodes findFirstOrThrow
-   */
-  export type UserAccountDeleteCodesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAccountDeleteCodes
-     */
-    select?: UserAccountDeleteCodesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserAccountDeleteCodes
-     */
-    omit?: UserAccountDeleteCodesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserAccountDeleteCodesInclude<ExtArgs> | null
-    /**
-     * Filter, which UserAccountDeleteCodes to fetch.
-     */
-    where?: UserAccountDeleteCodesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of UserAccountDeleteCodes to fetch.
-     */
-    orderBy?: UserAccountDeleteCodesOrderByWithRelationInput | UserAccountDeleteCodesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for UserAccountDeleteCodes.
-     */
-    cursor?: UserAccountDeleteCodesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` UserAccountDeleteCodes from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` UserAccountDeleteCodes.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of UserAccountDeleteCodes.
-     */
-    distinct?: UserAccountDeleteCodesScalarFieldEnum | UserAccountDeleteCodesScalarFieldEnum[]
-  }
-
-  /**
-   * UserAccountDeleteCodes findMany
-   */
-  export type UserAccountDeleteCodesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAccountDeleteCodes
-     */
-    select?: UserAccountDeleteCodesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserAccountDeleteCodes
-     */
-    omit?: UserAccountDeleteCodesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserAccountDeleteCodesInclude<ExtArgs> | null
-    /**
-     * Filter, which UserAccountDeleteCodes to fetch.
-     */
-    where?: UserAccountDeleteCodesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of UserAccountDeleteCodes to fetch.
-     */
-    orderBy?: UserAccountDeleteCodesOrderByWithRelationInput | UserAccountDeleteCodesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing UserAccountDeleteCodes.
-     */
-    cursor?: UserAccountDeleteCodesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` UserAccountDeleteCodes from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` UserAccountDeleteCodes.
-     */
-    skip?: number
-    distinct?: UserAccountDeleteCodesScalarFieldEnum | UserAccountDeleteCodesScalarFieldEnum[]
-  }
-
-  /**
-   * UserAccountDeleteCodes create
-   */
-  export type UserAccountDeleteCodesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAccountDeleteCodes
-     */
-    select?: UserAccountDeleteCodesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserAccountDeleteCodes
-     */
-    omit?: UserAccountDeleteCodesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserAccountDeleteCodesInclude<ExtArgs> | null
-    /**
-     * The data needed to create a UserAccountDeleteCodes.
-     */
-    data: XOR<UserAccountDeleteCodesCreateInput, UserAccountDeleteCodesUncheckedCreateInput>
-  }
-
-  /**
-   * UserAccountDeleteCodes createMany
-   */
-  export type UserAccountDeleteCodesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many UserAccountDeleteCodes.
-     */
-    data: UserAccountDeleteCodesCreateManyInput | UserAccountDeleteCodesCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * UserAccountDeleteCodes createManyAndReturn
-   */
-  export type UserAccountDeleteCodesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAccountDeleteCodes
-     */
-    select?: UserAccountDeleteCodesSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserAccountDeleteCodes
-     */
-    omit?: UserAccountDeleteCodesOmit<ExtArgs> | null
-    /**
-     * The data used to create many UserAccountDeleteCodes.
-     */
-    data: UserAccountDeleteCodesCreateManyInput | UserAccountDeleteCodesCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserAccountDeleteCodesIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * UserAccountDeleteCodes update
-   */
-  export type UserAccountDeleteCodesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAccountDeleteCodes
-     */
-    select?: UserAccountDeleteCodesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserAccountDeleteCodes
-     */
-    omit?: UserAccountDeleteCodesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserAccountDeleteCodesInclude<ExtArgs> | null
-    /**
-     * The data needed to update a UserAccountDeleteCodes.
-     */
-    data: XOR<UserAccountDeleteCodesUpdateInput, UserAccountDeleteCodesUncheckedUpdateInput>
-    /**
-     * Choose, which UserAccountDeleteCodes to update.
-     */
-    where: UserAccountDeleteCodesWhereUniqueInput
-  }
-
-  /**
-   * UserAccountDeleteCodes updateMany
-   */
-  export type UserAccountDeleteCodesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update UserAccountDeleteCodes.
-     */
-    data: XOR<UserAccountDeleteCodesUpdateManyMutationInput, UserAccountDeleteCodesUncheckedUpdateManyInput>
-    /**
-     * Filter which UserAccountDeleteCodes to update
-     */
-    where?: UserAccountDeleteCodesWhereInput
-    /**
-     * Limit how many UserAccountDeleteCodes to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * UserAccountDeleteCodes updateManyAndReturn
-   */
-  export type UserAccountDeleteCodesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAccountDeleteCodes
-     */
-    select?: UserAccountDeleteCodesSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserAccountDeleteCodes
-     */
-    omit?: UserAccountDeleteCodesOmit<ExtArgs> | null
-    /**
-     * The data used to update UserAccountDeleteCodes.
-     */
-    data: XOR<UserAccountDeleteCodesUpdateManyMutationInput, UserAccountDeleteCodesUncheckedUpdateManyInput>
-    /**
-     * Filter which UserAccountDeleteCodes to update
-     */
-    where?: UserAccountDeleteCodesWhereInput
-    /**
-     * Limit how many UserAccountDeleteCodes to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserAccountDeleteCodesIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * UserAccountDeleteCodes upsert
-   */
-  export type UserAccountDeleteCodesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAccountDeleteCodes
-     */
-    select?: UserAccountDeleteCodesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserAccountDeleteCodes
-     */
-    omit?: UserAccountDeleteCodesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserAccountDeleteCodesInclude<ExtArgs> | null
-    /**
-     * The filter to search for the UserAccountDeleteCodes to update in case it exists.
-     */
-    where: UserAccountDeleteCodesWhereUniqueInput
-    /**
-     * In case the UserAccountDeleteCodes found by the `where` argument doesn't exist, create a new UserAccountDeleteCodes with this data.
-     */
-    create: XOR<UserAccountDeleteCodesCreateInput, UserAccountDeleteCodesUncheckedCreateInput>
-    /**
-     * In case the UserAccountDeleteCodes was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<UserAccountDeleteCodesUpdateInput, UserAccountDeleteCodesUncheckedUpdateInput>
-  }
-
-  /**
-   * UserAccountDeleteCodes delete
-   */
-  export type UserAccountDeleteCodesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAccountDeleteCodes
-     */
-    select?: UserAccountDeleteCodesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserAccountDeleteCodes
-     */
-    omit?: UserAccountDeleteCodesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserAccountDeleteCodesInclude<ExtArgs> | null
-    /**
-     * Filter which UserAccountDeleteCodes to delete.
-     */
-    where: UserAccountDeleteCodesWhereUniqueInput
-  }
-
-  /**
-   * UserAccountDeleteCodes deleteMany
-   */
-  export type UserAccountDeleteCodesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which UserAccountDeleteCodes to delete
-     */
-    where?: UserAccountDeleteCodesWhereInput
-    /**
-     * Limit how many UserAccountDeleteCodes to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * UserAccountDeleteCodes without action
-   */
-  export type UserAccountDeleteCodesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAccountDeleteCodes
-     */
-    select?: UserAccountDeleteCodesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserAccountDeleteCodes
-     */
-    omit?: UserAccountDeleteCodesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserAccountDeleteCodesInclude<ExtArgs> | null
   }
 
 
@@ -13855,17 +12635,6 @@ export namespace Prisma {
   export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[keyof typeof VerificationScalarFieldEnum]
 
 
-  export const UserAccountDeleteCodesScalarFieldEnum: {
-    userId: 'userId',
-    code: 'code',
-    expiresAt: 'expiresAt',
-    attempts: 'attempts',
-    updatedAt: 'updatedAt'
-  };
-
-  export type UserAccountDeleteCodesScalarFieldEnum = (typeof UserAccountDeleteCodesScalarFieldEnum)[keyof typeof UserAccountDeleteCodesScalarFieldEnum]
-
-
   export const BookScalarFieldEnum: {
     id: 'id',
     title: 'title',
@@ -14059,7 +12828,6 @@ export namespace Prisma {
     sessions?: SessionListRelationFilter
     accounts?: AccountListRelationFilter
     UserBookRaiting?: UserBookRaitingListRelationFilter
-    UserAccountDeleteCodes?: UserAccountDeleteCodesListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -14074,7 +12842,6 @@ export namespace Prisma {
     sessions?: SessionOrderByRelationAggregateInput
     accounts?: AccountOrderByRelationAggregateInput
     UserBookRaiting?: UserBookRaitingOrderByRelationAggregateInput
-    UserAccountDeleteCodes?: UserAccountDeleteCodesOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -14092,7 +12859,6 @@ export namespace Prisma {
     sessions?: SessionListRelationFilter
     accounts?: AccountListRelationFilter
     UserBookRaiting?: UserBookRaitingListRelationFilter
-    UserAccountDeleteCodes?: UserAccountDeleteCodesListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -14343,63 +13109,6 @@ export namespace Prisma {
     expiresAt?: DateTimeWithAggregatesFilter<"Verification"> | Date | string
     createdAt?: DateTimeNullableWithAggregatesFilter<"Verification"> | Date | string | null
     updatedAt?: DateTimeNullableWithAggregatesFilter<"Verification"> | Date | string | null
-  }
-
-  export type UserAccountDeleteCodesWhereInput = {
-    AND?: UserAccountDeleteCodesWhereInput | UserAccountDeleteCodesWhereInput[]
-    OR?: UserAccountDeleteCodesWhereInput[]
-    NOT?: UserAccountDeleteCodesWhereInput | UserAccountDeleteCodesWhereInput[]
-    userId?: StringFilter<"UserAccountDeleteCodes"> | string
-    code?: StringFilter<"UserAccountDeleteCodes"> | string
-    expiresAt?: DateTimeFilter<"UserAccountDeleteCodes"> | Date | string
-    attempts?: IntFilter<"UserAccountDeleteCodes"> | number
-    updatedAt?: DateTimeFilter<"UserAccountDeleteCodes"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }
-
-  export type UserAccountDeleteCodesOrderByWithRelationInput = {
-    userId?: SortOrder
-    code?: SortOrder
-    expiresAt?: SortOrder
-    attempts?: SortOrder
-    updatedAt?: SortOrder
-    user?: UserOrderByWithRelationInput
-  }
-
-  export type UserAccountDeleteCodesWhereUniqueInput = Prisma.AtLeast<{
-    userId?: string
-    AND?: UserAccountDeleteCodesWhereInput | UserAccountDeleteCodesWhereInput[]
-    OR?: UserAccountDeleteCodesWhereInput[]
-    NOT?: UserAccountDeleteCodesWhereInput | UserAccountDeleteCodesWhereInput[]
-    code?: StringFilter<"UserAccountDeleteCodes"> | string
-    expiresAt?: DateTimeFilter<"UserAccountDeleteCodes"> | Date | string
-    attempts?: IntFilter<"UserAccountDeleteCodes"> | number
-    updatedAt?: DateTimeFilter<"UserAccountDeleteCodes"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "userId">
-
-  export type UserAccountDeleteCodesOrderByWithAggregationInput = {
-    userId?: SortOrder
-    code?: SortOrder
-    expiresAt?: SortOrder
-    attempts?: SortOrder
-    updatedAt?: SortOrder
-    _count?: UserAccountDeleteCodesCountOrderByAggregateInput
-    _avg?: UserAccountDeleteCodesAvgOrderByAggregateInput
-    _max?: UserAccountDeleteCodesMaxOrderByAggregateInput
-    _min?: UserAccountDeleteCodesMinOrderByAggregateInput
-    _sum?: UserAccountDeleteCodesSumOrderByAggregateInput
-  }
-
-  export type UserAccountDeleteCodesScalarWhereWithAggregatesInput = {
-    AND?: UserAccountDeleteCodesScalarWhereWithAggregatesInput | UserAccountDeleteCodesScalarWhereWithAggregatesInput[]
-    OR?: UserAccountDeleteCodesScalarWhereWithAggregatesInput[]
-    NOT?: UserAccountDeleteCodesScalarWhereWithAggregatesInput | UserAccountDeleteCodesScalarWhereWithAggregatesInput[]
-    userId?: StringWithAggregatesFilter<"UserAccountDeleteCodes"> | string
-    code?: StringWithAggregatesFilter<"UserAccountDeleteCodes"> | string
-    expiresAt?: DateTimeWithAggregatesFilter<"UserAccountDeleteCodes"> | Date | string
-    attempts?: IntWithAggregatesFilter<"UserAccountDeleteCodes"> | number
-    updatedAt?: DateTimeWithAggregatesFilter<"UserAccountDeleteCodes"> | Date | string
   }
 
   export type BookWhereInput = {
@@ -14760,7 +13469,6 @@ export namespace Prisma {
     sessions?: SessionCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
     UserBookRaiting?: UserBookRaitingCreateNestedManyWithoutUserInput
-    UserAccountDeleteCodes?: UserAccountDeleteCodesCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -14775,7 +13483,6 @@ export namespace Prisma {
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     UserBookRaiting?: UserBookRaitingUncheckedCreateNestedManyWithoutUserInput
-    UserAccountDeleteCodes?: UserAccountDeleteCodesUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -14790,7 +13497,6 @@ export namespace Prisma {
     sessions?: SessionUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
     UserBookRaiting?: UserBookRaitingUpdateManyWithoutUserNestedInput
-    UserAccountDeleteCodes?: UserAccountDeleteCodesUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -14805,7 +13511,6 @@ export namespace Prisma {
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     UserBookRaiting?: UserBookRaitingUncheckedUpdateManyWithoutUserNestedInput
-    UserAccountDeleteCodes?: UserAccountDeleteCodesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -15089,61 +13794,6 @@ export namespace Prisma {
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type UserAccountDeleteCodesCreateInput = {
-    code: string
-    expiresAt: Date | string
-    attempts?: number
-    updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutUserAccountDeleteCodesInput
-  }
-
-  export type UserAccountDeleteCodesUncheckedCreateInput = {
-    userId: string
-    code: string
-    expiresAt: Date | string
-    attempts?: number
-    updatedAt?: Date | string
-  }
-
-  export type UserAccountDeleteCodesUpdateInput = {
-    code?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    attempts?: IntFieldUpdateOperationsInput | number
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutUserAccountDeleteCodesNestedInput
-  }
-
-  export type UserAccountDeleteCodesUncheckedUpdateInput = {
-    userId?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    attempts?: IntFieldUpdateOperationsInput | number
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type UserAccountDeleteCodesCreateManyInput = {
-    userId: string
-    code: string
-    expiresAt: Date | string
-    attempts?: number
-    updatedAt?: Date | string
-  }
-
-  export type UserAccountDeleteCodesUpdateManyMutationInput = {
-    code?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    attempts?: IntFieldUpdateOperationsInput | number
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type UserAccountDeleteCodesUncheckedUpdateManyInput = {
-    userId?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    attempts?: IntFieldUpdateOperationsInput | number
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BookCreateInput = {
@@ -15579,12 +14229,6 @@ export namespace Prisma {
     none?: UserBookRaitingWhereInput
   }
 
-  export type UserAccountDeleteCodesListRelationFilter = {
-    every?: UserAccountDeleteCodesWhereInput
-    some?: UserAccountDeleteCodesWhereInput
-    none?: UserAccountDeleteCodesWhereInput
-  }
-
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -15599,10 +14243,6 @@ export namespace Prisma {
   }
 
   export type UserBookRaitingOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type UserAccountDeleteCodesOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -15845,65 +14485,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
-  export type UserAccountDeleteCodesCountOrderByAggregateInput = {
-    userId?: SortOrder
-    code?: SortOrder
-    expiresAt?: SortOrder
-    attempts?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type UserAccountDeleteCodesAvgOrderByAggregateInput = {
-    attempts?: SortOrder
-  }
-
-  export type UserAccountDeleteCodesMaxOrderByAggregateInput = {
-    userId?: SortOrder
-    code?: SortOrder
-    expiresAt?: SortOrder
-    attempts?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type UserAccountDeleteCodesMinOrderByAggregateInput = {
-    userId?: SortOrder
-    code?: SortOrder
-    expiresAt?: SortOrder
-    attempts?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type UserAccountDeleteCodesSumOrderByAggregateInput = {
-    attempts?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
   export type AuthorNullableScalarRelationFilter = {
     is?: AuthorWhereInput | null
     isNot?: AuthorWhereInput | null
@@ -15963,6 +14544,17 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type BookScalarRelationFilter = {
     is?: BookWhereInput
     isNot?: BookWhereInput
@@ -16000,6 +14592,22 @@ export namespace Prisma {
 
   export type UserBookRaitingSumOrderByAggregateInput = {
     raiting?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type BookListRelationFilter = {
@@ -16116,13 +14724,6 @@ export namespace Prisma {
     connect?: UserBookRaitingWhereUniqueInput | UserBookRaitingWhereUniqueInput[]
   }
 
-  export type UserAccountDeleteCodesCreateNestedManyWithoutUserInput = {
-    create?: XOR<UserAccountDeleteCodesCreateWithoutUserInput, UserAccountDeleteCodesUncheckedCreateWithoutUserInput> | UserAccountDeleteCodesCreateWithoutUserInput[] | UserAccountDeleteCodesUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserAccountDeleteCodesCreateOrConnectWithoutUserInput | UserAccountDeleteCodesCreateOrConnectWithoutUserInput[]
-    createMany?: UserAccountDeleteCodesCreateManyUserInputEnvelope
-    connect?: UserAccountDeleteCodesWhereUniqueInput | UserAccountDeleteCodesWhereUniqueInput[]
-  }
-
   export type SessionUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
@@ -16142,13 +14743,6 @@ export namespace Prisma {
     connectOrCreate?: UserBookRaitingCreateOrConnectWithoutUserInput | UserBookRaitingCreateOrConnectWithoutUserInput[]
     createMany?: UserBookRaitingCreateManyUserInputEnvelope
     connect?: UserBookRaitingWhereUniqueInput | UserBookRaitingWhereUniqueInput[]
-  }
-
-  export type UserAccountDeleteCodesUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<UserAccountDeleteCodesCreateWithoutUserInput, UserAccountDeleteCodesUncheckedCreateWithoutUserInput> | UserAccountDeleteCodesCreateWithoutUserInput[] | UserAccountDeleteCodesUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserAccountDeleteCodesCreateOrConnectWithoutUserInput | UserAccountDeleteCodesCreateOrConnectWithoutUserInput[]
-    createMany?: UserAccountDeleteCodesCreateManyUserInputEnvelope
-    connect?: UserAccountDeleteCodesWhereUniqueInput | UserAccountDeleteCodesWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -16213,20 +14807,6 @@ export namespace Prisma {
     deleteMany?: UserBookRaitingScalarWhereInput | UserBookRaitingScalarWhereInput[]
   }
 
-  export type UserAccountDeleteCodesUpdateManyWithoutUserNestedInput = {
-    create?: XOR<UserAccountDeleteCodesCreateWithoutUserInput, UserAccountDeleteCodesUncheckedCreateWithoutUserInput> | UserAccountDeleteCodesCreateWithoutUserInput[] | UserAccountDeleteCodesUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserAccountDeleteCodesCreateOrConnectWithoutUserInput | UserAccountDeleteCodesCreateOrConnectWithoutUserInput[]
-    upsert?: UserAccountDeleteCodesUpsertWithWhereUniqueWithoutUserInput | UserAccountDeleteCodesUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: UserAccountDeleteCodesCreateManyUserInputEnvelope
-    set?: UserAccountDeleteCodesWhereUniqueInput | UserAccountDeleteCodesWhereUniqueInput[]
-    disconnect?: UserAccountDeleteCodesWhereUniqueInput | UserAccountDeleteCodesWhereUniqueInput[]
-    delete?: UserAccountDeleteCodesWhereUniqueInput | UserAccountDeleteCodesWhereUniqueInput[]
-    connect?: UserAccountDeleteCodesWhereUniqueInput | UserAccountDeleteCodesWhereUniqueInput[]
-    update?: UserAccountDeleteCodesUpdateWithWhereUniqueWithoutUserInput | UserAccountDeleteCodesUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: UserAccountDeleteCodesUpdateManyWithWhereWithoutUserInput | UserAccountDeleteCodesUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: UserAccountDeleteCodesScalarWhereInput | UserAccountDeleteCodesScalarWhereInput[]
-  }
-
   export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
@@ -16269,20 +14849,6 @@ export namespace Prisma {
     deleteMany?: UserBookRaitingScalarWhereInput | UserBookRaitingScalarWhereInput[]
   }
 
-  export type UserAccountDeleteCodesUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<UserAccountDeleteCodesCreateWithoutUserInput, UserAccountDeleteCodesUncheckedCreateWithoutUserInput> | UserAccountDeleteCodesCreateWithoutUserInput[] | UserAccountDeleteCodesUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserAccountDeleteCodesCreateOrConnectWithoutUserInput | UserAccountDeleteCodesCreateOrConnectWithoutUserInput[]
-    upsert?: UserAccountDeleteCodesUpsertWithWhereUniqueWithoutUserInput | UserAccountDeleteCodesUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: UserAccountDeleteCodesCreateManyUserInputEnvelope
-    set?: UserAccountDeleteCodesWhereUniqueInput | UserAccountDeleteCodesWhereUniqueInput[]
-    disconnect?: UserAccountDeleteCodesWhereUniqueInput | UserAccountDeleteCodesWhereUniqueInput[]
-    delete?: UserAccountDeleteCodesWhereUniqueInput | UserAccountDeleteCodesWhereUniqueInput[]
-    connect?: UserAccountDeleteCodesWhereUniqueInput | UserAccountDeleteCodesWhereUniqueInput[]
-    update?: UserAccountDeleteCodesUpdateWithWhereUniqueWithoutUserInput | UserAccountDeleteCodesUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: UserAccountDeleteCodesUpdateManyWithWhereWithoutUserInput | UserAccountDeleteCodesUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: UserAccountDeleteCodesScalarWhereInput | UserAccountDeleteCodesScalarWhereInput[]
-  }
-
   export type UserCreateNestedOneWithoutSessionsInput = {
     create?: XOR<UserCreateWithoutSessionsInput, UserUncheckedCreateWithoutSessionsInput>
     connectOrCreate?: UserCreateOrConnectWithoutSessionsInput
@@ -16313,28 +14879,6 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutAccountsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAccountsInput, UserUpdateWithoutAccountsInput>, UserUncheckedUpdateWithoutAccountsInput>
-  }
-
-  export type UserCreateNestedOneWithoutUserAccountDeleteCodesInput = {
-    create?: XOR<UserCreateWithoutUserAccountDeleteCodesInput, UserUncheckedCreateWithoutUserAccountDeleteCodesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutUserAccountDeleteCodesInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type UserUpdateOneRequiredWithoutUserAccountDeleteCodesNestedInput = {
-    create?: XOR<UserCreateWithoutUserAccountDeleteCodesInput, UserUncheckedCreateWithoutUserAccountDeleteCodesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutUserAccountDeleteCodesInput
-    upsert?: UserUpsertWithoutUserAccountDeleteCodesInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUserAccountDeleteCodesInput, UserUpdateWithoutUserAccountDeleteCodesInput>, UserUncheckedUpdateWithoutUserAccountDeleteCodesInput>
   }
 
   export type AuthorCreateNestedOneWithoutBooksInput = {
@@ -16405,6 +14949,14 @@ export namespace Prisma {
     create?: XOR<UserCreateWithoutUserBookRaitingInput, UserUncheckedCreateWithoutUserBookRaitingInput>
     connectOrCreate?: UserCreateOrConnectWithoutUserBookRaitingInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type BookUpdateOneRequiredWithoutUserBookRaitingNestedInput = {
@@ -16748,30 +15300,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type UserAccountDeleteCodesCreateWithoutUserInput = {
-    code: string
-    expiresAt: Date | string
-    attempts?: number
-    updatedAt?: Date | string
-  }
-
-  export type UserAccountDeleteCodesUncheckedCreateWithoutUserInput = {
-    code: string
-    expiresAt: Date | string
-    attempts?: number
-    updatedAt?: Date | string
-  }
-
-  export type UserAccountDeleteCodesCreateOrConnectWithoutUserInput = {
-    where: UserAccountDeleteCodesWhereUniqueInput
-    create: XOR<UserAccountDeleteCodesCreateWithoutUserInput, UserAccountDeleteCodesUncheckedCreateWithoutUserInput>
-  }
-
-  export type UserAccountDeleteCodesCreateManyUserInputEnvelope = {
-    data: UserAccountDeleteCodesCreateManyUserInput | UserAccountDeleteCodesCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
   export type SessionUpsertWithWhereUniqueWithoutUserInput = {
     where: SessionWhereUniqueInput
     update: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
@@ -16863,33 +15391,6 @@ export namespace Prisma {
     comment?: StringNullableFilter<"UserBookRaiting"> | string | null
   }
 
-  export type UserAccountDeleteCodesUpsertWithWhereUniqueWithoutUserInput = {
-    where: UserAccountDeleteCodesWhereUniqueInput
-    update: XOR<UserAccountDeleteCodesUpdateWithoutUserInput, UserAccountDeleteCodesUncheckedUpdateWithoutUserInput>
-    create: XOR<UserAccountDeleteCodesCreateWithoutUserInput, UserAccountDeleteCodesUncheckedCreateWithoutUserInput>
-  }
-
-  export type UserAccountDeleteCodesUpdateWithWhereUniqueWithoutUserInput = {
-    where: UserAccountDeleteCodesWhereUniqueInput
-    data: XOR<UserAccountDeleteCodesUpdateWithoutUserInput, UserAccountDeleteCodesUncheckedUpdateWithoutUserInput>
-  }
-
-  export type UserAccountDeleteCodesUpdateManyWithWhereWithoutUserInput = {
-    where: UserAccountDeleteCodesScalarWhereInput
-    data: XOR<UserAccountDeleteCodesUpdateManyMutationInput, UserAccountDeleteCodesUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type UserAccountDeleteCodesScalarWhereInput = {
-    AND?: UserAccountDeleteCodesScalarWhereInput | UserAccountDeleteCodesScalarWhereInput[]
-    OR?: UserAccountDeleteCodesScalarWhereInput[]
-    NOT?: UserAccountDeleteCodesScalarWhereInput | UserAccountDeleteCodesScalarWhereInput[]
-    userId?: StringFilter<"UserAccountDeleteCodes"> | string
-    code?: StringFilter<"UserAccountDeleteCodes"> | string
-    expiresAt?: DateTimeFilter<"UserAccountDeleteCodes"> | Date | string
-    attempts?: IntFilter<"UserAccountDeleteCodes"> | number
-    updatedAt?: DateTimeFilter<"UserAccountDeleteCodes"> | Date | string
-  }
-
   export type UserCreateWithoutSessionsInput = {
     id: string
     role?: $Enums.Role
@@ -16901,7 +15402,6 @@ export namespace Prisma {
     updatedAt: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
     UserBookRaiting?: UserBookRaitingCreateNestedManyWithoutUserInput
-    UserAccountDeleteCodes?: UserAccountDeleteCodesCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -16915,7 +15415,6 @@ export namespace Prisma {
     updatedAt: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     UserBookRaiting?: UserBookRaitingUncheckedCreateNestedManyWithoutUserInput
-    UserAccountDeleteCodes?: UserAccountDeleteCodesUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -16945,7 +15444,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
     UserBookRaiting?: UserBookRaitingUpdateManyWithoutUserNestedInput
-    UserAccountDeleteCodes?: UserAccountDeleteCodesUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -16959,7 +15457,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     UserBookRaiting?: UserBookRaitingUncheckedUpdateManyWithoutUserNestedInput
-    UserAccountDeleteCodes?: UserAccountDeleteCodesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAccountsInput = {
@@ -16973,7 +15470,6 @@ export namespace Prisma {
     updatedAt: Date | string
     sessions?: SessionCreateNestedManyWithoutUserInput
     UserBookRaiting?: UserBookRaitingCreateNestedManyWithoutUserInput
-    UserAccountDeleteCodes?: UserAccountDeleteCodesCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -16987,7 +15483,6 @@ export namespace Prisma {
     updatedAt: Date | string
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     UserBookRaiting?: UserBookRaitingUncheckedCreateNestedManyWithoutUserInput
-    UserAccountDeleteCodes?: UserAccountDeleteCodesUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -17017,7 +15512,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUpdateManyWithoutUserNestedInput
     UserBookRaiting?: UserBookRaitingUpdateManyWithoutUserNestedInput
-    UserAccountDeleteCodes?: UserAccountDeleteCodesUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -17030,79 +15524,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    UserBookRaiting?: UserBookRaitingUncheckedUpdateManyWithoutUserNestedInput
-    UserAccountDeleteCodes?: UserAccountDeleteCodesUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserCreateWithoutUserAccountDeleteCodesInput = {
-    id: string
-    role?: $Enums.Role
-    name: string
-    email: string
-    emailVerified: boolean
-    image?: string | null
-    createdAt: Date | string
-    updatedAt: Date | string
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    accounts?: AccountCreateNestedManyWithoutUserInput
-    UserBookRaiting?: UserBookRaitingCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutUserAccountDeleteCodesInput = {
-    id: string
-    role?: $Enums.Role
-    name: string
-    email: string
-    emailVerified: boolean
-    image?: string | null
-    createdAt: Date | string
-    updatedAt: Date | string
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    UserBookRaiting?: UserBookRaitingUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutUserAccountDeleteCodesInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutUserAccountDeleteCodesInput, UserUncheckedCreateWithoutUserAccountDeleteCodesInput>
-  }
-
-  export type UserUpsertWithoutUserAccountDeleteCodesInput = {
-    update: XOR<UserUpdateWithoutUserAccountDeleteCodesInput, UserUncheckedUpdateWithoutUserAccountDeleteCodesInput>
-    create: XOR<UserCreateWithoutUserAccountDeleteCodesInput, UserUncheckedCreateWithoutUserAccountDeleteCodesInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutUserAccountDeleteCodesInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutUserAccountDeleteCodesInput, UserUncheckedUpdateWithoutUserAccountDeleteCodesInput>
-  }
-
-  export type UserUpdateWithoutUserAccountDeleteCodesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    accounts?: AccountUpdateManyWithoutUserNestedInput
-    UserBookRaiting?: UserBookRaitingUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutUserAccountDeleteCodesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    emailVerified?: BoolFieldUpdateOperationsInput | boolean
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     UserBookRaiting?: UserBookRaitingUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -17236,7 +15657,6 @@ export namespace Prisma {
     updatedAt: Date | string
     sessions?: SessionCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
-    UserAccountDeleteCodes?: UserAccountDeleteCodesCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutUserBookRaitingInput = {
@@ -17250,7 +15670,6 @@ export namespace Prisma {
     updatedAt: Date | string
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    UserAccountDeleteCodes?: UserAccountDeleteCodesUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutUserBookRaitingInput = {
@@ -17311,7 +15730,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
-    UserAccountDeleteCodes?: UserAccountDeleteCodesUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUserBookRaitingInput = {
@@ -17325,7 +15743,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    UserAccountDeleteCodes?: UserAccountDeleteCodesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type BookCreateWithoutAuthorInput = {
@@ -17416,13 +15833,6 @@ export namespace Prisma {
     bookId: string
     raiting: number
     comment?: string | null
-  }
-
-  export type UserAccountDeleteCodesCreateManyUserInput = {
-    code: string
-    expiresAt: Date | string
-    attempts?: number
-    updatedAt?: Date | string
   }
 
   export type SessionUpdateWithoutUserInput = {
@@ -17516,27 +15926,6 @@ export namespace Prisma {
     bookId?: StringFieldUpdateOperationsInput | string
     raiting?: IntFieldUpdateOperationsInput | number
     comment?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type UserAccountDeleteCodesUpdateWithoutUserInput = {
-    code?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    attempts?: IntFieldUpdateOperationsInput | number
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type UserAccountDeleteCodesUncheckedUpdateWithoutUserInput = {
-    code?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    attempts?: IntFieldUpdateOperationsInput | number
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type UserAccountDeleteCodesUncheckedUpdateManyWithoutUserInput = {
-    code?: StringFieldUpdateOperationsInput | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    attempts?: IntFieldUpdateOperationsInput | number
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserBookRaitingCreateManyBookInput = {

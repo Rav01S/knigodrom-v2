@@ -167,14 +167,6 @@ exports.Prisma.VerificationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.UserAccountDeleteCodesScalarFieldEnum = {
-  userId: 'userId',
-  code: 'code',
-  expiresAt: 'expiresAt',
-  attempts: 'attempts',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.BookScalarFieldEnum = {
   id: 'id',
   title: 'title',
@@ -250,7 +242,6 @@ exports.Prisma.ModelName = {
   Session: 'Session',
   Account: 'Account',
   Verification: 'Verification',
-  UserAccountDeleteCodes: 'UserAccountDeleteCodes',
   Book: 'Book',
   BookImage: 'BookImage',
   UserBookRaiting: 'UserBookRaiting',
