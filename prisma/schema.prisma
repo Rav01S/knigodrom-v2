@@ -77,17 +77,6 @@ model Verification {
   @@map("verification")
 }
 
-model UserAccountDeleteCodes {
-  userId    String    @id
-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  code      String
-  expiresAt DateTime
-  attempts  Int       @default(0)
-  updatedAt DateTime  @updatedAt
-
-  @@map("user_account_delete_codes")
-}
-
 model Book {
   id              String            @id @default(cuid())
   title           String
