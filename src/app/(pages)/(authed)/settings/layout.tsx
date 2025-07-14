@@ -15,17 +15,12 @@ export default function Layout(props: PropsWithChildren) {
     <>
       <div
         className={clsx(
-          "settings-page-container flex-1 items-stretch flex gap-4",
-          {
-            "flex-col": isMobileScreen,
-          }
+          "settings-page-container flex-col sm:flex-row flex-1 items-stretch flex gap-4"
         )}
       >
         {((isMobileScreen && pathname === "/settings") || !isMobileScreen) && (
           <div
-            className={clsx("settings-page-left p-2 flex-1", {
-              "border-r-2 border-r-gray-400": !isMobileScreen,
-            })}
+            className={clsx("settings-page-left p-2 flex-1 sm:border-r-2 sm:border-r-gray-600")}
           >
             <div className="settings-left-container container mx-auto sticky top-16">
               <h2 className="text-center md:text-start">Настройки</h2>

@@ -13,7 +13,7 @@ export default function Page() {
 
   return (
     <div className="settings-right flex-4">
-      <div className="settings-container flex flex-col gap-4 max-w-md md:max-w-xl mx-auto">
+      <div className="settings-container flex flex-col gap-6 container max-w-xl mx-auto">
         <h1 className="text-center !mb-0">Аккаунт</h1>
         <section className="flex flex-col gap-4" id="personal-info">
           <h3>Персональная информация</h3>
@@ -21,7 +21,7 @@ export default function Page() {
           <ChangeUserInfoForm user={session.data.user} />
         </section>
         <section className="flex flex-col gap-2" id="change-password">
-          <h3>Пароль</h3>
+          <h3 className="!mb-0">Пароль</h3>
           <p className="text-gray-400">
             Изменив пароль, вы сбросите все сессии на других устройствах, кроме
             данной сессии
@@ -29,7 +29,7 @@ export default function Page() {
           <ChangeUserPasswordForm />
         </section>
         <section className="flex flex-col gap-2" id="delete-account">
-          <h3>Удаление аккаунта</h3>
+          <h3 className="!mb-0">Удаление аккаунта</h3>
           <p className="text-gray-400">
             Удаление аккаунта приведет к удалению всех данных о вас на данном
             сайте
