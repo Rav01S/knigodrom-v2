@@ -1,6 +1,7 @@
 import { prisma } from "@prisma/prisma";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
+import { sendEmail } from "../nodemailer/nodemailer";
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
@@ -22,5 +23,18 @@ export const auth = betterAuth({
         input: false,
       },
     },
-  }
+    deleteUser: {
+      enabled: true,
+      sendDeleteAccountVerification: async ({ user, url }) => {
+        sendEmail({
+          to: user.email,
+          subject: "Подтверждение удаления аккаунта",
+          html: `
+            <p>Для подтверждения удаления аккаунта перейдите по следующей ссылке:</p>
+            <p><a href="${url}">${url}</a></p>
+          `,
+        });
+      },
+    },
+  },
 });

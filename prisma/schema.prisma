@@ -15,17 +15,18 @@ enum Role {
 }
 
 model User {
-  id              String            @id
-  role            Role              @default(USER)
-  name            String
-  email           String
-  emailVerified   Boolean
-  image           String?
-  createdAt       DateTime
-  updatedAt       DateTime
-  sessions        Session[]
-  accounts        Account[]
-  UserBookRaiting UserBookRaiting[]
+  id                     String                   @id
+  role                   Role                     @default(USER)
+  name                   String
+  email                  String
+  emailVerified          Boolean
+  image                  String?
+  createdAt              DateTime
+  updatedAt              DateTime
+  sessions               Session[]
+  accounts               Account[]
+  UserBookRaiting        UserBookRaiting[]
+  UserAccountDeleteCodes UserAccountDeleteCodes[]
 
   @@unique([email])
   @@map("user")
@@ -76,15 +77,25 @@ model Verification {
   @@map("verification")
 }
 
+model UserAccountDeleteCodes {
+  userId    String    @id
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  code      String
+  expiresAt DateTime
+  attempts  Int       @default(0)
+  updatedAt DateTime  @updatedAt
+
+  @@map("user_account_delete_codes")
+}
+
 model Book {
   id              String            @id @default(cuid())
   title           String
-  author          String
   downloadUrl     String?
   publishedAt     DateTime
   createdAt       DateTime
   updatedAt       DateTime
-  Author          Author?           @relation(fields: [authorId], references: [id])
+  Author          Author?           @relation(fields: [authorId], references: [id], onDelete: SetNull)
   authorId        String?
   UserBookRaiting UserBookRaiting[]
 
@@ -103,9 +114,9 @@ model BookImage {
 
 model UserBookRaiting {
   bookId  String
-  book    Book   @relation(references: [id], fields: [bookId])
+  book    Book    @relation(references: [id], fields: [bookId], onDelete: Cascade)
   userId  String
-  user    User   @relation(references: [id], fields: [userId])
+  user    User    @relation(references: [id], fields: [userId], onDelete: Cascade)
   raiting Int
   comment String?
 

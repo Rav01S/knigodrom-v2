@@ -24,9 +24,9 @@ export default async function ProfilePage() {
           <Image
             src={session.user.image || DEFAULT_AVATAR_IMAGE}
             alt="User Avatar"
-            width={100}
-            height={100}
-            className="object-cover rounded-xl w-48 h-48 ring-2 ring-gray-500"
+            width={500}
+            height={500}
+            className="object-cover rounded-xl aspect-square ring-2 ring-gray-500"
           />
         </div>
         <div className="user-info">

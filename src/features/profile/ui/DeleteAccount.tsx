@@ -1,48 +1,28 @@
 "use client";
 
 import Button from "@/shared/components/Button";
-import FieldErrorText from "@/shared/components/FieldErrorText";
 import Modal from "@/shared/components/Modal";
-import PasswordInput from "@/shared/components/PasswordInput";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
 import { authClient } from "@/shared/lib/better-auth/clientAuth";
-import Link from "next/link";
-import Input from "@/shared/components/Input";
-import {
-  deleteUserAccountSchema,
-  TDeleteUserAccountSchema,
-} from "./DeleteAccountSchema";
 
 export default function DeleteAccount() {
-  const {
-    handleSubmit,
-    register,
-    formState: { errors, isSubmitting },
-  } = useForm<TDeleteUserAccountSchema>({
-    resolver: zodResolver(deleteUserAccountSchema),
-  });
   const [isHidden, setIsHidden] = useState(true);
 
-  const onSubmit = async (data: TDeleteUserAccountSchema) => {
+  const onSubmit = async () => {
     try {
-      const res = await authClient.deleteUser({
-        password: data.old_password,
-      });
+      const toastId = toast.loading("Отправляем запрос на удаление аккаунта...");
+      const res = await authClient.deleteUser();
       if (res.error) {
-        if (res.error.code === "INVALID_PASSWORD") {
-          toast.error("Неверный текущий пароль");
-        } else {
-          toast.error(res.error.message);
-        }
-        return;
+        toast.error(res.error.message);
+      } else {
+        toast.update(toastId, {
+          render: "На вашу почту была отправлена ссылка для удаления аккаунта",
+          type: "success",
+          isLoading: false,
+          autoClose: 5000,
+        });
       }
-      toast.success("Пароль успешно изменен");
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
     } catch (e) {
       if (e instanceof Error) {
         toast.error(e.message);
@@ -58,37 +38,13 @@ export default function DeleteAccount() {
       >
         Удалить аккаунт
       </Button>
-      <Modal variant="input" setIsHidden={setIsHidden} isHidden={isHidden}>
-        <form
-          className="flex flex-col justify-between pt-10 gap-4 w-full h-full"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <div className="form__content flex flex-col gap-4">
-            <h3>Удаление аккаунта</h3>
-            <div className="form__field">
-              <label htmlFor="old_password">Текущий пароль</label>
-              <PasswordInput {...register("old_password")} />
-              <FieldErrorText>{errors.old_password?.message}</FieldErrorText>
-            </div>
-            <p>
-              Забыли пароль?{" "}
-              <Link href="/forgot-password" className="text-center underline">
-                Сбросить
-              </Link>
-            </p>
-            <div className="form__field flex flex-col">
-              <label htmlFor="new_password">Код</label>
-              <div className="flex flex-col items-end xs:flex-row xs:items-center justify-between gap-4">
-                <Input className="flex-1 w-full text-sm sm:text-base" {...register("code")} />
-                <Button className="text-sm sm:text-base" type="button">Отправить</Button>
-              </div>
-              <FieldErrorText>{errors.code?.message}</FieldErrorText>
-            </div>
-          </div>
-          <Button disabled={isSubmitting} variant="filled">
-            Удалить аккаунт
-          </Button>
-        </form>
+      <Modal
+        invertColors
+        setIsHidden={setIsHidden}
+        onSubmit={onSubmit}
+        isHidden={isHidden}
+      >
+        <h3>Вы точно хотите удалить аккаунт?</h3>
       </Modal>
     </>
   );

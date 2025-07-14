@@ -12,7 +12,7 @@ import useIsMobileScreen from "../hooks/useIsMobileScreen";
 type TModalProps = {
   variant?: "confirm" | "input";
   invertColors?: boolean;
-  onSubmit?: () => void;
+  onSubmit?: () => void | Promise<void>;
   isHidden: boolean;
   setIsHidden: (val: boolean) => void;
   children: ReactNode;
@@ -52,6 +52,11 @@ export default function Modal({
     return closeModal;
   }, [closeModal, isHidden, showModal]);
 
+  const _onSubmit = async () => {
+    if (onSubmit) await onSubmit();
+    closeModal();
+  };
+
   return (
     <AnimatePresence>
       {!isHidden && (
@@ -87,7 +92,7 @@ export default function Modal({
               <FaWindowClose fontSize="24px" color="red" />
             </button>
             {variant === "confirm" && (
-              <div className="modal__container pt-10 flex flex-col gap-4 text-center">
+              <div className="modal__container pt-10 h-full flex flex-col items-center justify-center sm:items-start sm:justify-start gap-4 text-center">
                 <div className="modal__content">{children}</div>
                 <div className="modal__buttons flex items-center justify-end gap-2">
                   <Button
@@ -97,7 +102,7 @@ export default function Modal({
                       "!text-red-500 !border-red-500 hover:!bg-red-500 hover:!text-white w-20":
                         invertColors,
                     })}
-                    onClick={onSubmit}
+                    onClick={_onSubmit}
                   >
                     Да
                   </Button>
