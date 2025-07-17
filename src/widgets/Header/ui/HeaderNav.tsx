@@ -31,10 +31,7 @@ export default function HeaderNav() {
                     <Dropdown>
                       <Dropdown.Title className="flex gap-4 items-center">
                         <Image
-                          src={
-                            session.data?.user.image ||
-                            DEFAULT_AVATAR_IMAGE
-                          }
+                          src={session.data?.user.image || DEFAULT_AVATAR_IMAGE}
                           alt="User Avatar"
                           width={100}
                           height={100}
@@ -57,7 +54,7 @@ export default function HeaderNav() {
                         </Link>
                         <Link
                           className="inline-block p-2 w-full text-center"
-                          href="/sign-out"
+                          href="/auth/sign-out"
                         >
                           Выйти
                         </Link>
@@ -69,10 +66,10 @@ export default function HeaderNav() {
               {!isAuthed && (
                 <>
                   <li>
-                    <Link href="/sign-in">Вход</Link>
+                    <Link href="/auth/sign-in">Вход</Link>
                   </li>
                   <li>
-                    <ButtonLink variant="filled" href="/sign-up">
+                    <ButtonLink variant="filled" href="/auth/sign-up">
                       Регистрация
                     </ButtonLink>
                   </li>

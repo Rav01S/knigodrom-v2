@@ -2,6 +2,7 @@
 
 import ClientOnly from "@/shared/components/ClientOnly";
 import useIsMobileScreen from "@/shared/hooks/useIsMobileScreen";
+import { authClient } from "@/shared/lib/better-auth/clientAuth";
 import clsx from "clsx";
 import { useTheme } from "next-themes";
 import Image from "next/image";
@@ -11,9 +12,18 @@ export default function HeaderLogo() {
   const { resolvedTheme } = useTheme();
   const { isMobileScreen } = useIsMobileScreen();
 
+  const session = authClient.useSession();
+
+  const isAuthed = !!session.data;
+
+  if (!session || session.isPending) return null;
+
   return (
     <ClientOnly>
-      <Link href="/" className="header__logo flex items-center gap-4 max-h-11">
+      <Link
+        href={isAuthed ? "/dashboard" : "/"}
+        className="header__logo flex items-center gap-4 max-h-11"
+      >
         <div
           className={clsx("header__logo-image px-1 py-2", {
             "bg-white rounded": resolvedTheme === "dark",

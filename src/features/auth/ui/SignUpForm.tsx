@@ -6,7 +6,6 @@ import { signUpSchema, TSignUpSchema } from "./SignUpSchema";
 import Input from "@/shared/components/Input";
 import Link from "next/link";
 import Button from "@/shared/components/Button";
-import ButtonLink from "@/shared/components/ButtonLink";
 import { FcGoogle } from "react-icons/fc";
 import PasswordInput from "@/shared/components/PasswordInput";
 import FieldErrorText from "@/shared/components/FieldErrorText";
@@ -28,6 +27,7 @@ export default function SignUpForm() {
   });
 
   const onSubmit = async (data: TSignUpSchema) => {
+    const toastId = toast.loading("Регистрация...");
     const { email, password, username } = data;
     const res = await authClient.signUp.email({
       email,
@@ -36,19 +36,35 @@ export default function SignUpForm() {
     });
 
     if (res.error) {
+      setValue("password", "");
+      setValue("password_repeat", "");
       if (res.error?.code === "USER_ALREADY_EXISTS") {
         setError("email", { message: "Такой email уже зарегистрирован" });
+        toast.update(toastId, {
+          autoClose: 3000,
+          type: "error",
+          render: "Такой email уже зарегистрирован",
+          isLoading: false,
+        });
+        return;
       }
-
-      setValue("password", "");
+      toast.update(toastId, {
+        autoClose: 3000,
+        type: "error",
+        render: res.error.message,
+        isLoading: false,
+      });
       return;
-    }
-
-    if (res.data.user) {
-      toast.success("Добро пожаловать, " + res.data.user.name);
+    } else {
+      toast.update(toastId, {
+        autoClose: 5000,
+        type: "success",
+        render: "Ссылка на подтверждение Email отправлена на почту",
+        isLoading: false,
+      });
       setTimeout(() => {
-        router.push("/profile");
-      }, 1000);
+        router.replace("/auth/sign-in");
+      }, 5000);
     }
   };
 
@@ -104,26 +120,25 @@ export default function SignUpForm() {
       </Button>
       <p className="text-center">
         Есть аккаунт?{" "}
-        <Link className="underline" href="/sign-in">
+        <Link className="underline" href="/auth/sign-in">
           Войти
         </Link>
       </p>
       <hr className="border" />
       <div className="another-sign-in">
         <h3 className="text-center">Или</h3>
-        <ButtonLink
+        <Button
           className="w-full !flex items-center justify-center gap-4"
           variant="outline"
-          href="/sign-in"
           onClick={() =>
             authClient.signIn.social({
               provider: "google",
-              callbackURL: "/profile"
+              callbackURL: "/dashboard",
             })
           }
         >
           Войти с Google <FcGoogle fontSize="24px" />
-        </ButtonLink>
+        </Button>
       </div>
     </form>
   );

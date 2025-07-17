@@ -75,7 +75,7 @@ export default function BurgerMenu({ isAuthed }: TBurgerMenu) {
                   <Link
                     onClick={() => setIsOpen(false)}
                     className="inline-block w-full text-center px-4 py-2"
-                    href="/sign-out"
+                    href="/auth/sign-out"
                   >
                     Выход
                   </Link>
@@ -88,7 +88,7 @@ export default function BurgerMenu({ isAuthed }: TBurgerMenu) {
                   <Link
                     onClick={() => setIsOpen(false)}
                     className="inline-block w-full text-center px-4 py-2"
-                    href="/sign-in"
+                    href="/auth/sign-in"
                   >
                     Вход
                   </Link>
@@ -98,7 +98,7 @@ export default function BurgerMenu({ isAuthed }: TBurgerMenu) {
                     onClick={() => setIsOpen(false)}
                     className="w-full"
                     variant="filled"
-                    href="/sign-up"
+                    href="/auth/sign-up"
                   >
                     Регистрация
                   </ButtonLink>

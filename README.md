@@ -38,7 +38,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 # Надо сделать
 
 - Email код при "Забыли пароль?"
-- Email код при Удалении аккаунта
 - Регистрация с подтверждением Email
 - В профиле показывать книги (Запланировано, читаю, прочитано, не понравилось)
 

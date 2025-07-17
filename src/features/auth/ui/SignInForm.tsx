@@ -6,7 +6,6 @@ import { signInSchema, TSignInSchema } from "./SignInSchema";
 import Input from "@/shared/components/Input";
 import Link from "next/link";
 import Button from "@/shared/components/Button";
-import ButtonLink from "@/shared/components/ButtonLink";
 import { FcGoogle } from "react-icons/fc";
 import PasswordInput from "@/shared/components/PasswordInput";
 import FieldErrorText from "@/shared/components/FieldErrorText";
@@ -28,21 +27,49 @@ export default function SignInForm() {
   });
 
   const onSubmit = async (data: TSignInSchema) => {
+    const toastId = toast.loading("Вход...");
     const res = await authClient.signIn.email(data);
 
     if (res.error) {
-      if (res.error?.code === "INVALID_EMAIL_OR_PASSWORD") {
-        setError("email", { message: "Неверный email или пароль" });
-      }
-
       setValue("password", "");
-      return;
-    }
 
-    if (res.data.user) {
-      toast.success("Добро пожаловать, " + res.data.user.name);
+      switch (res.error?.code) {
+        case "INVALID_EMAIL_OR_PASSWORD":
+          setError("email", { message: "Неверный email или пароль" });
+          toast.update(toastId, {
+            autoClose: 3000,
+            type: "error",
+            render: "Неверный email или пароль",
+            isLoading: false,
+          });
+          break;
+        case "EMAIL_NOT_VERIFIED":
+          setError("email", { message: "Email не подтвержден" });
+          toast.update(toastId, {
+            autoClose: 3000,
+            type: "error",
+            render: "Email не подтвержден",
+            isLoading: false,
+          });
+          break;
+        default:
+          toast.update(toastId, {
+            autoClose: 3000,
+            type: "error",
+            render: "Ошибка: " + res.error.message,
+            isLoading: false,
+          });
+          break;
+      }
+    } else {
+      toast.update(toastId, {
+        autoClose: 1000,
+        type: "success",
+        render: "Добро пожаловать, " + res.data.user.name,
+        isLoading: false,
+      });
       setTimeout(() => {
-        router.push("/profile");
+        router.push("/dashboard");
       }, 1000);
     }
   };
@@ -84,26 +111,30 @@ export default function SignInForm() {
       </Button>
       <p className="text-center">
         Нет аккаунта?{" "}
-        <Link className="underline" href="/sign-up">
+        <Link className="underline" href="/auth/sign-up">
           Зарегистрироваться
+        </Link>
+      </p>
+      <p className="text-center">
+        <Link href="/auth/forget-password" className="underline">
+          Забыли пароль?
         </Link>
       </p>
       <hr className="border" />
       <div className="another-sign-in">
         <h3 className="text-center">Или</h3>
-        <ButtonLink
+        <Button
           className="w-full !flex items-center justify-center gap-4"
           variant="outline"
-          href="/sign-in"
           onClick={() =>
             authClient.signIn.social({
               provider: "google",
-              callbackURL: "/profile"
+              callbackURL: "/dashboard",
             })
           }
         >
           Войти с Google <FcGoogle fontSize="24px" />
-        </ButtonLink>
+        </Button>
       </div>
     </form>
   );

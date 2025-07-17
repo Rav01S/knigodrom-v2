@@ -1,21 +1,16 @@
 "use server";
 
-import { auth } from "@/shared/lib/better-auth/auth";
-import { headers } from "next/headers";
+import { serverIsAuthed } from "@/shared/lib/better-auth/auth";
 import { redirect } from "next/navigation";
+import { PropsWithChildren } from "react";
 
-export default async function layout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
+export default async function AuthedLayout(props: PropsWithChildren) {
+  const isAuthed = await serverIsAuthed();
 
-  if (!session) {
-    return redirect("/sign-in");
+  if (!isAuthed) {
+    redirect("/auth/sign-in");
+    return;
   }
 
-  return <>{children}</>;
+  return props.children;
 }

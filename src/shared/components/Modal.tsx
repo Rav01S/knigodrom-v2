@@ -94,7 +94,7 @@ export default function Modal({
             {variant === "confirm" && (
               <div className="modal__container pt-10 h-full flex flex-col items-center justify-center sm:items-start sm:justify-start gap-4 text-center">
                 <div className="modal__content">{children}</div>
-                <div className="modal__buttons flex items-center justify-end gap-2">
+                <div className="modal__buttons w-full flex items-center justify-center sm:justify-end gap-2">
                   <Button
                     className={clsx({
                       "!text-green-500 !border-green-500 hover:!bg-green-500 hover:!text-white w-20":

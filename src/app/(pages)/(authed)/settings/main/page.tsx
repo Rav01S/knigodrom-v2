@@ -1,8 +1,9 @@
 "use client";
 
-import ChangeUserAvatar from "@/features/profile/ui/ChangeUserAvatar";
+import ChangeUserAvatar from "@/features/profile/ui/ChangeUserAvatarForm";
+import ChangeUserEmailForm from "@/features/profile/ui/ChangeUserEmailForm";
 import ChangeUserInfoForm from "@/features/profile/ui/ChangeUserInfoForm";
-import ChangeUserPasswordForm from "@/features/profile/ui/ChangeUserPassword";
+import ChangeUserPasswordForm from "@/features/profile/ui/ChangeUserPasswordForm";
 import DeleteAccount from "@/features/profile/ui/DeleteAccount";
 import { authClient } from "@/shared/lib/better-auth/clientAuth";
 
@@ -20,13 +21,17 @@ export default function Page() {
           <ChangeUserAvatar image={session.data.user.image} />
           <ChangeUserInfoForm user={session.data.user} />
         </section>
+        <section className="flex flex-col gap-2" id="change-email">
+          <h3>Email</h3>
+          <ChangeUserEmailForm user={session.data.user} />
+        </section>
         <section className="flex flex-col gap-2" id="change-password">
           <h3 className="!mb-0">Пароль</h3>
           <p className="text-gray-400">
             Изменив пароль, вы сбросите все сессии на других устройствах, кроме
             данной сессии
           </p>
-          <ChangeUserPasswordForm />
+          <ChangeUserPasswordForm userEmail={session.data.user.email} />
         </section>
         <section className="flex flex-col gap-2" id="delete-account">
           <h3 className="!mb-0">Удаление аккаунта</h3>
