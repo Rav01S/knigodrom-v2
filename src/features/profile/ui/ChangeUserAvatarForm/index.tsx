@@ -35,15 +35,27 @@ export default function ChangeUserAvatar({
       toast.error("Изображение должно быть формата: jpg, jpeg, svg, png");
       return;
     }
-    
+
+    const toastId = toast.loading("Обновление аватара");
+
     const res = await authClient.updateUser({
       image: (await toBase64(file)) as string | null,
     });
 
     if (res.error) {
-      toast.error(res.error.message);
+      toast.update(toastId, {
+        render: res.error.message,
+        isLoading: false,
+        autoClose: 3000,
+        type: "error",
+      });
     } else {
-      toast.success("Изображение сохранено");
+      toast.update(toastId, {
+        render: "Изображение изменено",
+        isLoading: false,
+        autoClose: 3000,
+        type: "success",
+      });
     }
   };
 
