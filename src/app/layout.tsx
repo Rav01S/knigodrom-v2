@@ -30,7 +30,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider attribute="class" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="system">
           <Header />
           <main className="flex-1 flex flex-col">
             <ToastContainer />

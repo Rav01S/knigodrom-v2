@@ -1,8 +1,11 @@
 @import "tailwindcss";
 
+
 @theme {
   --breakpoint-xs: 30rem;
 }
+
+@custom-variant dark (html.dark &);
 
 html.dark {
   @apply bg-black text-white;

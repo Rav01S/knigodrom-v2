@@ -1,3 +1,4 @@
+// app/settings/main/page.tsx (или где ваш Main Settings Page)
 "use client";
 
 import ChangeUserAvatar from "@/features/profile/ui/ChangeUserAvatarForm";
@@ -10,38 +11,58 @@ import { authClient } from "@/shared/lib/better-auth/clientAuth";
 export default function Page() {
   const session = authClient.useSession();
 
-  if (!session.data?.user) return null;
+  // Отображаем загрузку, если сессия не готова
+  if (session.isPending) {
+    return (
+      <div className="flex justify-center items-center h-full text-lg text-gray-500 dark:text-gray-400">
+        Загрузка настроек...
+      </div>
+    );
+  }
+
+  // Если пользователь не авторизован, можно перенаправить или показать сообщение
+  if (!session.data?.user) {
+    return (
+      <div className="flex justify-center items-center h-full text-lg text-red-500">
+        Ошибка: Пользователь не авторизован.
+      </div>
+    );
+  }
 
   return (
-    <div className="settings-right flex-4">
-      <div className="settings-container flex flex-col gap-6 container max-w-xl mx-auto">
-        <h1 className="text-center !mb-0">Аккаунт</h1>
-        <section className="flex flex-col gap-4" id="personal-info">
-          <h3>Персональная информация</h3>
+    <div className="settings-main-content">
+      <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-50 mb-8 text-center sm:text-left">Аккаунт</h1>
+
+      <section className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm mb-6">
+        <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Персональная информация</h2>
+        <div className="flex flex-col gap-5">
           <ChangeUserAvatar image={session.data.user.image} />
           <ChangeUserInfoForm user={session.data.user} />
-        </section>
-        <section className="flex flex-col gap-2" id="change-email">
-          <h3>Email</h3>
-          <ChangeUserEmailForm user={session.data.user} />
-        </section>
-        <section className="flex flex-col gap-2" id="change-password">
-          <h3 className="!mb-0">Пароль</h3>
-          <p className="text-gray-400">
-            Изменив пароль, вы сбросите все сессии на других устройствах, кроме
-            данной сессии
-          </p>
-          <ChangeUserPasswordForm userEmail={session.data.user.email} />
-        </section>
-        <section className="flex flex-col gap-2" id="delete-account">
-          <h3 className="!mb-0">Удаление аккаунта</h3>
-          <p className="text-gray-400">
-            Удаление аккаунта приведет к удалению всех данных о вас на данном
-            сайте
-          </p>
-          <DeleteAccount />
-        </section>
-      </div>
+        </div>
+      </section>
+
+      <section className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm mb-6">
+        <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Email</h2>
+        <ChangeUserEmailForm user={session.data.user} />
+      </section>
+
+      <section className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm mb-6">
+        <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2">Пароль</h2>
+        <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
+          Изменив пароль, вы сбросите все сессии на других устройствах, кроме
+          данной.
+        </p>
+        <ChangeUserPasswordForm userEmail={session.data.user.email} />
+      </section>
+
+      <section className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm mb-6">
+        <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2">Удаление аккаунта</h2>
+        <p className="text-red-600 dark:text-red-400 text-sm mb-4">
+          Удаление аккаунта приведет к безвозвратному удалению всех данных о вас на данном
+          сайте.
+        </p>
+        <DeleteAccount />
+      </section>
     </div>
   );
 }

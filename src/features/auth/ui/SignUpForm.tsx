@@ -128,6 +128,7 @@ export default function SignUpForm() {
       <div className="another-sign-in">
         <h3 className="text-center">Или</h3>
         <Button
+          type="button"
           className="w-full !flex items-center justify-center gap-4"
           variant="outline"
           onClick={() =>
